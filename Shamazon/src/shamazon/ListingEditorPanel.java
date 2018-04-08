@@ -5,6 +5,8 @@
  */
 package shamazon;
 
+import java.util.HashSet;
+
 /**
  *
  * @author Charles
@@ -17,7 +19,12 @@ public class ListingEditorPanel extends javax.swing.JPanel {
     public ListingEditorPanel() {
         initComponents();
     }
-
+    
+    /**
+     * Listing either passed into the editor or a blank default one.
+     */
+    private Listing listingToEdit;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,7 +189,8 @@ public class ListingEditorPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
