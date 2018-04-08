@@ -20,6 +20,10 @@ public class Shamazon {
         Listing testListing = new Listing("Test item","It does everything my "
                 + "dudes",100.0f,"Cool");
         ListingEditorPanel editorPanel = new ListingEditorPanel();
+        TestFrame tesFr = new TestFrame();
+        tesFr.setVisible(true);
+        tesFr.add(editorPanel);
+        tesFr.setTitle("This is broken");
         editorPanel.LoadListing(testListing);
         editorPanel.setVisible(true);
     }
