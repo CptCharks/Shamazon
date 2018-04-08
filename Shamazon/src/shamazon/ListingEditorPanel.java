@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package shamazon;
-
 import java.util.HashSet;
+import java.math.*;
 
 /**
  *
@@ -34,24 +34,24 @@ public class ListingEditorPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        DescriptionTextField = new javax.swing.JTextField();
+        NameTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        SaveEditorButton = new javax.swing.JButton();
+        EditorCancelButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        TagTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        PriceTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        ImageTextField = new javax.swing.JTextField();
+        EditorLoadImageButton = new javax.swing.JButton();
+        ImagePreviewLabel = new javax.swing.JLabel();
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        DescriptionTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                DescriptionTextFieldActionPerformed(evt);
             }
         });
 
@@ -59,49 +59,49 @@ public class ListingEditorPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Description:");
 
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SaveEditorButton.setText("Save");
+        SaveEditorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SaveEditorButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        EditorCancelButton.setText("Cancel");
+        EditorCancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                EditorCancelButtonActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Price:");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        TagTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                TagTextFieldActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Tag:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        PriceTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                PriceTextFieldActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Image:");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        ImageTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                ImageTextFieldActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Load Image");
-        jButton3.setActionCommand("ImageLoadButton");
+        EditorLoadImageButton.setText("Load Image");
+        EditorLoadImageButton.setActionCommand("ImageLoadButton");
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ImageMissing.png"))); // NOI18N
+        ImagePreviewLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ImagePreviewLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ImageMissing.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,33 +110,33 @@ public class ListingEditorPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField2)
+                    .addComponent(NameTextField)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(DescriptionTextField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TagTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ImagePreviewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(ImageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jButton3))
+                                                .addComponent(EditorLoadImageButton))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton1)
+                                                .addComponent(SaveEditorButton)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jButton2)))))))))
+                                                .addComponent(EditorCancelButton)))))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -145,11 +145,11 @@ public class ListingEditorPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -157,73 +157,92 @@ public class ListingEditorPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))
+                            .addComponent(PriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ImageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EditorLoadImageButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TagTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 71, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(EditorCancelButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(SaveEditorButton, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                    .addComponent(ImagePreviewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jTextField1.getAccessibleContext().setAccessibleName("DescriptionField");
-        jTextField2.getAccessibleContext().setAccessibleName("NameField");
-        jButton1.getAccessibleContext().setAccessibleName("EditorSave");
-        jButton2.getAccessibleContext().setAccessibleName("EditorCancel");
-        jTextField3.getAccessibleContext().setAccessibleName("TagField");
+        DescriptionTextField.getAccessibleContext().setAccessibleName("DescriptionField");
+        NameTextField.getAccessibleContext().setAccessibleName("NameField");
+        SaveEditorButton.getAccessibleContext().setAccessibleName("EditorSave");
+        EditorCancelButton.getAccessibleContext().setAccessibleName("EditorCancel");
+        TagTextField.getAccessibleContext().setAccessibleName("TagField");
         jLabel4.getAccessibleContext().setAccessibleName("Tag");
-        jButton3.getAccessibleContext().setAccessibleName("LoadImageButton");
+        EditorLoadImageButton.getAccessibleContext().setAccessibleName("LoadImageButton");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here: 
+    
+    public void LoadListing(Listing list)
+    {
+        listingToEdit = list;
+        NameTextField.setText(listingToEdit.GetName());
+        DescriptionTextField.setText(listingToEdit.GetDescription());
+        PriceTextField.setText(Float.toString(listingToEdit.GetPrice()));
+        TagTextField.setText(listingToEdit.GetTag());
         
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Image fanagling
+    }
+    
+    private void DescriptionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescriptionTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_DescriptionTextFieldActionPerformed
+    
+    private void SaveEditorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveEditorButtonActionPerformed
+        listingToEdit.SetName(NameTextField.getText());
+        listingToEdit.SetDescription(DescriptionTextField.getText());
+        listingToEdit.SetPrice(Float.parseFloat(PriceTextField.getText()));
+        listingToEdit.SetTag(TagTextField.getText());
+        
+        //Image fanagling goes here
+        //listingToEdit.SetListingImage();
+        
+        //Pass listing to database
+        //Update if already exists
+    }//GEN-LAST:event_SaveEditorButtonActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void EditorCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditorCancelButtonActionPerformed
+        
+    }//GEN-LAST:event_EditorCancelButtonActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void TagTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TagTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_TagTextFieldActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void PriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_PriceTextFieldActionPerformed
+
+    private void ImageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImageTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ImageTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTextField DescriptionTextField;
+    private javax.swing.JButton EditorCancelButton;
+    private javax.swing.JButton EditorLoadImageButton;
+    private javax.swing.JLabel ImagePreviewLabel;
+    private javax.swing.JTextField ImageTextField;
+    private javax.swing.JTextField NameTextField;
+    private javax.swing.JTextField PriceTextField;
+    private javax.swing.JButton SaveEditorButton;
+    private javax.swing.JTextField TagTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
