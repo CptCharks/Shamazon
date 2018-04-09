@@ -48,15 +48,13 @@ public class Listing
     /**
      * Default constructor
      */
-    public Listing(String name, String desc, float price, String tag/*, BufferedImage img*/)
+    public Listing(String name, String desc, float price, String tag, BufferedImage img)
     {
         listingName = name;
         listingDescription = desc;
         listingPrice = price;
         listingTag = tag;
-        
-        //Need to figure out how the image works
-        //listingImage = img;
+        listingImage = img;
     }
     /**
      * Sets the name of the listing.

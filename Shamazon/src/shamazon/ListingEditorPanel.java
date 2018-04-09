@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package shamazon;
-import java.util.HashSet;
-import java.math.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -197,6 +196,10 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         EditorLoadImageButton.getAccessibleContext().setAccessibleName("LoadImageButton");
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * This method is called when editing a listing. Pass in an empty listing if wishing to create a new listing.
+     * @param list listing that is passed to the editor.
+     */
     public void LoadListing(Listing list)
     {
         listingToEdit = list;
@@ -205,7 +208,18 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         PriceTextField.setText(Float.toString(listingToEdit.GetPrice()));
         TagTextField.setText(listingToEdit.GetTag());
         
-        //Image fanagling
+        //make sure there is an image to show
+        if(listingToEdit.GetListingImage() != null)
+        {
+            //Get bufferedImage from the listing
+            BufferedImage listImage = listingToEdit.GetListingImage();
+            
+            //Create a previewIcon from a scaled instance of listImage
+            ImageIcon previewIcon = new ImageIcon(listImage.getScaledInstance(ImagePreviewLabel.getWidth(),ImagePreviewLabel.getHeight(),0));
+            
+            //Set label to previewIcon.
+            ImagePreviewLabel.setIcon(previewIcon);
+        }
     }
     
     private void DescriptionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescriptionTextFieldActionPerformed
@@ -218,29 +232,38 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         listingToEdit.SetPrice(Float.parseFloat(PriceTextField.getText()));
         listingToEdit.SetTag(TagTextField.getText());
         
-        //Image fanagling goes here
-        //listingToEdit.SetListingImage();
-        String imagePath = editorImagePath;
-        File imageFile = new File(imagePath);
-        try
+        if(editorImagePath != null)
         {
-            BufferedImage imgBuff = ImageIO.read(imageFile);
-            listingToEdit.SetListingImage(imgBuff);
+            //Image fanagling goes here
+            //listingToEdit.SetListingImage();
+            String imagePath = editorImagePath;
+            File imageFile = new File(imagePath);
+            try
+            {
+                BufferedImage imgBuff = ImageIO.read(imageFile);
+                listingToEdit.SetListingImage(imgBuff);
+            }
+            catch(IllegalArgumentException e)
+            {
+                System.out.println("Invalid image file passed. No image saved.");
+                System.out.println(e.getMessage());
+            }
+            catch(IOException e)
+            {
+                System.out.println("IOException found in image reading. No image saved.");
+                System.out.println(e.getMessage());
+            }
         }
-        catch(IllegalArgumentException e)
+        else
         {
-            System.out.println("Invalid image file passed. No image saved.");
-            System.out.println(e.getMessage());
+            listingToEdit.SetListingImage(null);
         }
-        catch(IOException e)
-        {
-            System.out.println("IOException found in image reading. No image saved.");
-            System.out.println(e.getMessage());
-        }
-        
-        
         //Pass listing to database
         //Update if already exists
+        
+        
+        //TEST STATEMENT
+        ///this.LoadListing(this.listingToEdit);
     }//GEN-LAST:event_SaveEditorButtonActionPerformed
 
     private void EditorCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditorCancelButtonActionPerformed
@@ -260,15 +283,48 @@ public class ListingEditorPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ImageTextFieldActionPerformed
 
     private void EditorLoadImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditorLoadImageButtonActionPerformed
+        //Create file chooser object
         JFileChooser chooser = new JFileChooser();
+        //Create a file filter. Make sure you can only choose JPG and PNG.
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+        //Set the filter for the chooser
         chooser.setFileFilter(filter);
+        //Get return value from showOpenDialog
         int returnVal = chooser.showOpenDialog(null);
+        //Check if approved
         if(returnVal == JFileChooser.APPROVE_OPTION) {
+            //System printout.
             System.out.println("You chose to open this file: " +
             chooser.getSelectedFile().getName());
+            //Store the image path for reference later
             editorImagePath = chooser.getSelectedFile().getPath();
+            
+            //Shorten the name for the user and store in text box.
             ImageTextField.setText(chooser.getSelectedFile().getName());
+            
+            File imageFile = new File(editorImagePath);
+            
+            try
+            {
+            //Get bufferedImage from the listing
+            BufferedImage imgBuffPreview = ImageIO.read(imageFile);
+
+            //Create a previewIcon from a scaled instance of listImage
+            ImageIcon previewIcon = new ImageIcon(imgBuffPreview.getScaledInstance(ImagePreviewLabel.getWidth(),ImagePreviewLabel.getHeight(),0));
+           
+            //Set label to previewIcon.
+            ImagePreviewLabel.setIcon(previewIcon);
+            }
+            catch(IllegalArgumentException e)
+            {
+                System.out.println("Invalid image file passed. No image saved.");
+                System.out.println(e.getMessage());
+            }
+            catch(IOException e)
+            {
+                System.out.println("IOException found in image reading. No image saved.");
+                System.out.println(e.getMessage());
+            }
         }  
     }//GEN-LAST:event_EditorLoadImageButtonActionPerformed
 

@@ -19,7 +19,7 @@ public class Shamazon {
     public static void main(String[] args)
     {
         Listing testListing = new Listing("Test item","It does everything my "
-                + "dudes",100.0f,"Cool");
+                + "dudes",100.0f,"Cool",null);
         ListingEditorPanel editorPanel = new ListingEditorPanel();
         JFrame tesFr = new JFrame();
         tesFr.setSize(700,500);
