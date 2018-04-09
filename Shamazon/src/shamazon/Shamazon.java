@@ -18,16 +18,40 @@ public class Shamazon {
      */
     public static void main(String[] args)
     {
-        Listing testListing = new Listing("Test item","It does everything my "
-                + "dudes",100.0f,"Cool",null);
-        ListingEditorPanel editorPanel = new ListingEditorPanel();
         JFrame tesFr = new JFrame();
         tesFr.setSize(700,500);
-        tesFr.setTitle("This is broken");
-        tesFr.getContentPane().add(editorPanel);
-        editorPanel.LoadListing(testListing);
-        editorPanel.setVisible(true);
+        
+        ListingBrowser lisBow = new ListingBrowser();
+        
+        Listing testListing1 = new Listing("Test item","It does everything my "
+                + "dudes",100.0f,"Cool",null);
+        Listing testListing2 = new Listing("New Lawn Mower","It does not everything my "
+                + "gals",100.0f,"Nope.jpg",null);
+        
+        lisBow.TestAddToList(testListing1);
+        lisBow.TestAddToList(testListing2);
+        lisBow.setVisible(true);
+        tesFr.getContentPane().add(lisBow);
+        tesFr.setTitle("Test time");
         tesFr.setVisible(true);
+        lisBow.RefreshListings();
+        
+        /*JFrame tesFr = new JFrame();
+        tesFr.setSize(700,500);
+        tesFr.setTitle("Test time");
+        
+        ListingEditorPanel editPanel = new ListingEditorPanel();
+        
+        Listing testListing1 = new Listing("Test item","It does everything my "
+                + "dudes",100.0f,"Cool",null);
+        
+        editPanel.LoadListing(testListing1);
+        
+        tesFr.getContentPane().add(editPanel);
+        
+        tesFr.setVisible(true);
+        
+        editPanel.setVisible(true);*/
     }
     
 }

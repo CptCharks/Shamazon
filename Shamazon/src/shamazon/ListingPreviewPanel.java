@@ -5,16 +5,19 @@
  */
 package shamazon;
 
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Charles
  */
-public class ListngPreviewPanel extends javax.swing.JPanel {
+public class ListingPreviewPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ListngPreviewPanel
      */
-    public ListngPreviewPanel() {
+    public ListingPreviewPanel() {
         initComponents();
     }
 
@@ -32,6 +35,8 @@ public class ListngPreviewPanel extends javax.swing.JPanel {
         ListingDescLabel = new javax.swing.JLabel();
         ListingPriceLabel = new javax.swing.JLabel();
         AddToCartButton = new javax.swing.JButton();
+
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         ListingNameLabel.setText("ListingName");
 
@@ -65,7 +70,7 @@ public class ListngPreviewPanel extends javax.swing.JPanel {
                                 .addComponent(AddToCartButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ListingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -89,7 +94,25 @@ public class ListngPreviewPanel extends javax.swing.JPanel {
     private void AddToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToCartButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AddToCartButtonActionPerformed
-
+    
+    public void LoadListingToPanel(Listing list)
+    {
+        ListingNameLabel.setText(list.GetName());
+        ListingDescLabel.setText(list.GetDescription());
+        ListingPriceLabel.setText(Float.toString(list.GetPrice()));
+        //make sure there is an image to show
+        if(list.GetListingImage() != null)
+        {
+            //Get bufferedImage from the listing
+            BufferedImage listImage = list.GetListingImage();
+            
+            //Create a previewIcon from a scaled instance of listImage
+            ImageIcon previewIcon = new ImageIcon(listImage.getScaledInstance(ListingImageLabel.getWidth(),ListingImageLabel.getHeight(),0));
+            
+            //Set label to previewIcon.
+            ListingImageLabel.setIcon(previewIcon);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToCartButton;
