@@ -34,31 +34,121 @@ public class ListingBrowser extends javax.swing.JPanel {
     private void initComponents() {
 
         ListingScrollPane = new javax.swing.JScrollPane();
+        SearchButton = new javax.swing.JButton();
+        SearchTextField = new javax.swing.JTextField();
+        SearchLabel = new javax.swing.JLabel();
+        FilterSettingsLabel = new javax.swing.JLabel();
+        PriceFieldLower = new javax.swing.JTextField();
+        PriceFieldHigher = new javax.swing.JTextField();
+        LessThanLabel = new javax.swing.JLabel();
+        PriceCheckBox = new javax.swing.JCheckBox();
 
         ListingScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         ListingScrollPane.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
+
+        SearchLabel.setText("Search:");
+
+        FilterSettingsLabel.setText("Filter Settings:");
+
+        PriceFieldLower.setText("0");
+        PriceFieldLower.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PriceFieldLowerActionPerformed(evt);
+            }
+        });
+
+        PriceFieldHigher.setText("100");
+
+        LessThanLabel.setText("<");
+
+        PriceCheckBox.setText("Price:");
+        PriceCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PriceCheckBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ListingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FilterSettingsLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PriceFieldLower, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LessThanLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PriceCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SearchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SearchButton))
+                    .addComponent(ListingScrollPane))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ListingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchButton)
+                    .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(FilterSettingsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PriceCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PriceFieldLower, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LessThanLabel))
+                        .addGap(0, 226, Short.MAX_VALUE))
+                    .addComponent(ListingScrollPane))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void PriceFieldLowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceFieldLowerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PriceFieldLowerActionPerformed
+
+    private void PriceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PriceCheckBoxActionPerformed
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FilterSettingsLabel;
+    private javax.swing.JLabel LessThanLabel;
     private javax.swing.JScrollPane ListingScrollPane;
+    private javax.swing.JCheckBox PriceCheckBox;
+    private javax.swing.JTextField PriceFieldHigher;
+    private javax.swing.JTextField PriceFieldLower;
+    private javax.swing.JButton SearchButton;
+    private javax.swing.JLabel SearchLabel;
+    private javax.swing.JTextField SearchTextField;
     // End of variables declaration//GEN-END:variables
 
     //From this point on is the code for the ListingBrowser

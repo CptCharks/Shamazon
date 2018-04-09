@@ -19,7 +19,7 @@ public class Shamazon {
     public static void main(String[] args)
     {
         JFrame tesFr = new JFrame();
-        tesFr.setSize(700,500);
+        tesFr.setSize(800,500);
         
         ListingBrowser lisBow = new ListingBrowser();
         
@@ -31,8 +31,9 @@ public class Shamazon {
         lisBow.TestAddToList(testListing1);
         lisBow.TestAddToList(testListing2);
         lisBow.setVisible(true);
+        
         tesFr.getContentPane().add(lisBow);
-        tesFr.setTitle("Test time");
+        tesFr.setTitle("Application Test Time");
         tesFr.setVisible(true);
         lisBow.RefreshListings();
         

@@ -43,6 +43,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         ListingImageLabel.setText("ListingImage");
 
         ListingDescLabel.setText("ListingDescription");
+        ListingDescLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         ListingPriceLabel.setText("Price: ");
 
@@ -97,9 +98,10 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
     
     public void LoadListingToPanel(Listing list)
     {
+        //Set name, description and price for each of the listing properties
         ListingNameLabel.setText(list.GetName());
         ListingDescLabel.setText(list.GetDescription());
-        ListingPriceLabel.setText(Float.toString(list.GetPrice()));
+        ListingPriceLabel.setText("Price: " + Float.toString(list.GetPrice()));
         //make sure there is an image to show
         if(list.GetListingImage() != null)
         {
