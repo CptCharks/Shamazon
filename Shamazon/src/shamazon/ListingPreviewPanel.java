@@ -114,6 +114,10 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
             //Set label to previewIcon.
             ListingImageLabel.setIcon(previewIcon);
         }
+        else
+        {   
+            ListingImageLabel.setText("Image Missing");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
