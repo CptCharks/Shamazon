@@ -6,6 +6,13 @@
 package shamazon;
 import java.util.HashSet;
 import java.math.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
+
 
 /**
  *
@@ -24,6 +31,7 @@ public class ListingEditorPanel extends javax.swing.JPanel {
      * Listing either passed into the editor or a blank default one.
      */
     private Listing listingToEdit;
+    private String editorImagePath;
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,9 +107,14 @@ public class ListingEditorPanel extends javax.swing.JPanel {
 
         EditorLoadImageButton.setText("Load Image");
         EditorLoadImageButton.setActionCommand("ImageLoadButton");
+        EditorLoadImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditorLoadImageButtonActionPerformed(evt);
+            }
+        });
 
         ImagePreviewLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ImagePreviewLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ImageMissing.png"))); // NOI18N
+        ImagePreviewLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -207,6 +220,24 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         
         //Image fanagling goes here
         //listingToEdit.SetListingImage();
+        String imagePath = editorImagePath;
+        File imageFile = new File(imagePath);
+        try
+        {
+            BufferedImage imgBuff = ImageIO.read(imageFile);
+            listingToEdit.SetListingImage(imgBuff);
+        }
+        catch(IllegalArgumentException e)
+        {
+            System.out.println("Invalid image file passed. No image saved.");
+            System.out.println(e.getMessage());
+        }
+        catch(IOException e)
+        {
+            System.out.println("IOException found in image reading. No image saved.");
+            System.out.println(e.getMessage());
+        }
+        
         
         //Pass listing to database
         //Update if already exists
@@ -227,6 +258,19 @@ public class ListingEditorPanel extends javax.swing.JPanel {
     private void ImageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImageTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ImageTextFieldActionPerformed
+
+    private void EditorLoadImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditorLoadImageButtonActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " +
+            chooser.getSelectedFile().getName());
+            editorImagePath = chooser.getSelectedFile().getPath();
+            ImageTextField.setText(chooser.getSelectedFile().getName());
+        }  
+    }//GEN-LAST:event_EditorLoadImageButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

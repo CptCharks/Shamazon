@@ -5,6 +5,7 @@
  */
 package shamazon;
 import java.awt.Image.*;
+import javax.swing.*;
 
 /**
  *
@@ -20,12 +21,13 @@ public class Shamazon {
         Listing testListing = new Listing("Test item","It does everything my "
                 + "dudes",100.0f,"Cool");
         ListingEditorPanel editorPanel = new ListingEditorPanel();
-        TestFrame tesFr = new TestFrame();
-        tesFr.setVisible(true);
-        tesFr.add(editorPanel);
+        JFrame tesFr = new JFrame();
+        tesFr.setSize(700,500);
         tesFr.setTitle("This is broken");
+        tesFr.getContentPane().add(editorPanel);
         editorPanel.LoadListing(testListing);
         editorPanel.setVisible(true);
+        tesFr.setVisible(true);
     }
     
 }
