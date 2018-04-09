@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package shamazon;
+import java.awt.Image.*;
+import javax.swing.*;
 
 /**
  *
@@ -14,8 +16,18 @@ public class Shamazon {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args)
+    {
+        Listing testListing = new Listing("Test item","It does everything my "
+                + "dudes",100.0f,"Cool",null);
+        ListingEditorPanel editorPanel = new ListingEditorPanel();
+        JFrame tesFr = new JFrame();
+        tesFr.setSize(700,500);
+        tesFr.setTitle("This is broken");
+        tesFr.getContentPane().add(editorPanel);
+        editorPanel.LoadListing(testListing);
+        editorPanel.setVisible(true);
+        tesFr.setVisible(true);
     }
     
 }
