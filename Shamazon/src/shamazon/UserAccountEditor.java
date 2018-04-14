@@ -23,12 +23,9 @@ public class UserAccountEditor extends javax.swing.JFrame
     /**
      * Creates new form UserAccountEditor
      */
-    public UserAccountEditor(UserAccount userAccount) 
+    public UserAccountEditor() 
     {
         initComponents();
-        
-        this.userAccount = userAccount;
-        
     }
 
     /**
