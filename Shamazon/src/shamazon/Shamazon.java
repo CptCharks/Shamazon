@@ -9,7 +9,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Charles
+ * @author Seth
  */
 public class Shamazon {
 
@@ -45,5 +45,5 @@ public class Shamazon {
         dialog.pack();
         dialog.setVisible(true);*/
     }
-    
+
 }
