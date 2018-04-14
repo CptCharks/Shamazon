@@ -18,7 +18,7 @@ public class UserAccount {
     private String address;
     private String username;
     private String password;
-    // private CreditCardInformation creditCard;
+    private String creditCardNumber;
     private BufferedImage avatar;
     // private Mailbox mailbox;
     // COLLECTION OF LISTINGS
@@ -116,5 +116,23 @@ public class UserAccount {
     public void SetAvatar(BufferedImage avatar)
     {
        this.avatar = avatar;
+    }
+    
+    /**
+     * 
+     * @return the user's credit card number
+     */
+    public String GetCreditCardNumber()
+    {
+        return creditCardNumber;
+    }
+    
+    /**
+     * 
+     * @param creditCardNumber the credit card number to be set
+     */
+    public void SetCreditCardNumber(String creditCardNumber)
+    {
+        this.creditCardNumber = creditCardNumber;
     }
 }
