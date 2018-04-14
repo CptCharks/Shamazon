@@ -234,24 +234,15 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         
         if(editorImagePath != null)
         {
-            //Image fanagling goes here
-            //listingToEdit.SetListingImage();
-            String imagePath = editorImagePath;
-            File imageFile = new File(imagePath);
-            try
+            ImageLoader imLo = new ImageLoader();
+            BufferedImage imgBuff = imLo.ImageFileToBuffImg(editorImagePath);
+            if (imgBuff != null)
             {
-                BufferedImage imgBuff = ImageIO.read(imageFile);
                 listingToEdit.SetListingImage(imgBuff);
             }
-            catch(IllegalArgumentException e)
+            else
             {
-                System.out.println("Invalid image file passed. No image saved.");
-                System.out.println(e.getMessage());
-            }
-            catch(IOException e)
-            {
-                System.out.println("IOException found in image reading. No image saved.");
-                System.out.println(e.getMessage());
+                listingToEdit.SetListingImage(null);
             }
         }
         else
