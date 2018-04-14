@@ -5,6 +5,9 @@
  */
 package shamazon;
 
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Luke
@@ -28,14 +31,15 @@ public class UserAccountEditor extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         addressTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        avatarLabel = new javax.swing.JLabel();
         creditCardTextField = new javax.swing.JTextField();
         usernameTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -45,6 +49,7 @@ public class UserAccountEditor extends javax.swing.JPanel
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
+        loadAvatarButton = new javax.swing.JButton();
 
         jLabel4.setText("Name");
 
@@ -56,8 +61,8 @@ public class UserAccountEditor extends javax.swing.JPanel
 
         emailTextField.setName(""); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 100));
+        avatarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
+        avatarLabel.setPreferredSize(new java.awt.Dimension(100, 100));
 
         creditCardTextField.setName(""); // NOI18N
 
@@ -80,6 +85,15 @@ public class UserAccountEditor extends javax.swing.JPanel
 
         nameTextField.setName(""); // NOI18N
 
+        loadAvatarButton.setText("Load Avatar");
+        loadAvatarButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                loadAvatarButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,22 +103,24 @@ public class UserAccountEditor extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2)
-                                    .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(passwordTextField)))
-                            .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(nameTextField)
                             .addComponent(addressTextField)
                             .addComponent(emailTextField)
-                            .addComponent(creditCardTextField))
+                            .addComponent(creditCardTextField)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(passwordTextField)
+                                    .addComponent(loadAvatarButton))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -119,16 +135,19 @@ public class UserAccountEditor extends javax.swing.JPanel
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(7, 7, 7)
                         .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                        .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loadAvatarButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -150,10 +169,18 @@ public class UserAccountEditor extends javax.swing.JPanel
                 .addContainerGap())
         );
 
-        jLabel1.getAccessibleContext().setAccessibleName("avatarLabel");
+        avatarLabel.getAccessibleContext().setAccessibleName("avatarLabel");
         usernameTextField.getAccessibleContext().setAccessibleName("");
         passwordTextField.getAccessibleContext().setAccessibleName("passwordTextField");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loadAvatarButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_loadAvatarButtonMouseClicked
+    {//GEN-HEADEREND:event_loadAvatarButtonMouseClicked
+        BufferedImage image = ImageLoader.LoadImage();
+        ImageIcon avatarIcon = new ImageIcon(image.getScaledInstance(avatarLabel.getWidth(),avatarLabel.getHeight(),0));
+
+        avatarLabel.setIcon(avatarIcon);
+    }//GEN-LAST:event_loadAvatarButtonMouseClicked
 
     public void LoadUserAccount(UserAccount user)
     {
@@ -168,17 +195,18 @@ public class UserAccountEditor extends javax.swing.JPanel
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTextField;
+    private javax.swing.JLabel avatarLabel;
     private javax.swing.JTextField creditCardTextField;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton loadAvatarButton;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTextField passwordTextField;
     private javax.swing.JTextField usernameTextField;

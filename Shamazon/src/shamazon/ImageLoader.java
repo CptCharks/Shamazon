@@ -17,17 +17,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Charles
  */
-public class ImageLoader {
+public class ImageLoader 
+{
     /**
      * ImageFileToBuffImg searches for an image file and converts to buffered image.
-     * @param PATH_TO_IMAGE File path to 
+     * @param imagePath File path to 
      * @return Returns buffered image or null object if no file found
      */
-    public BufferedImage ImageFileToBuffImg(String PATH_TO_IMAGE)
+    public static BufferedImage ImageFileToBufferedImage(String imagePath)
     {
             //Image fanagling goes here
             //listingToEdit.SetListingImage();
-            File imageFile = new File(PATH_TO_IMAGE);
+            File imageFile = new File(imagePath);
             try
             {
                 BufferedImage imgBuff = ImageIO.read(imageFile);
@@ -47,7 +48,11 @@ public class ImageLoader {
             return null;
     }
     
-    public BufferedImage FilePicker()
+    /**
+     * Reads the image selected from a file dialog into a BufferedImage.
+     * @return a BufferedImage which displays the selected image file
+     */
+    public static BufferedImage LoadImage()
     {
          //Create file chooser object
         JFileChooser chooser = new JFileChooser();

@@ -18,22 +18,22 @@ public class Shamazon {
      */
     public static void main(String[] args)
     {
-        JFrame tesFr = new JFrame();
-        tesFr.setSize(700,500);
-        tesFr.setTitle("Test time");
-        
-        ListingEditorPanel editPanel = new ListingEditorPanel();
-        
-        Listing testListing1 = new Listing("Test item","It does everything my "
-                + "dudes",100.0f,"Cool",null);
-        
-        editPanel.LoadListing(testListing1);
-        
-        tesFr.getContentPane().add(editPanel);
-        
-        tesFr.setVisible(true);
+//        JFrame tesFr = new JFrame();
+//        tesFr.setSize(700,500);
+//        tesFr.setTitle("Test time");
+//        
+//        ListingEditorPanel editPanel = new ListingEditorPanel();
+//        
+//        Listing testListing1 = new Listing("Test item","It does everything my "
+//                + "dudes",100.0f,"Cool",null);
+//        
+//        editPanel.LoadListing(testListing1);
+//        
+//        tesFr.getContentPane().add(editPanel);
+//        
+//        tesFr.setVisible(true);
       
-        /*editPanel.setVisible(true);
+//        editPanel.setVisible(true);
         UserAccount user = new UserAccount("Me", "Password", "Luke", "Memory Lane", "222@gmail", "1111", null);
         
         UserAccountEditor userAccountEditor = new UserAccountEditor();
@@ -43,7 +43,7 @@ public class Shamazon {
         
         dialog.setContentPane(userAccountEditor);
         dialog.pack();
-        dialog.setVisible(true);*/
+        dialog.setVisible(true);
     }
 
 }

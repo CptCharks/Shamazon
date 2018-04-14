@@ -234,8 +234,7 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         
         if(editorImagePath != null)
         {
-            ImageLoader imLo = new ImageLoader();
-            BufferedImage imgBuff = imLo.ImageFileToBuffImg(editorImagePath);
+            BufferedImage imgBuff = ImageLoader.ImageFileToBufferedImage(editorImagePath);
             if (imgBuff != null)
             {
                 listingToEdit.SetListingImage(imgBuff);
