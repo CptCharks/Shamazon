@@ -33,13 +33,14 @@ public class UserAccount {
     * @param password The password used to login to the account
     * @param avatar An image which appears on the user's profile page
     */
-    public UserAccount(String name, String email, String address, String username, String password, BufferedImage avatar)
+    public UserAccount(String username, String password, String name, String address, String email, String creditCardNumber, BufferedImage avatar)
     {
         this.name = name;
         this.email = email;
         this.username = username;
         this.address = address;
         this.password = password;
+        this.creditCardNumber = creditCardNumber;
         this.avatar = avatar;
         
         // Credit card info
@@ -102,6 +103,24 @@ public class UserAccount {
     
     /**
      * 
+     * @return the user's password
+     */
+    public String GetPassword()
+    {
+        return this.password;
+    }
+    
+    /**
+     * 
+     * @param password the password to be set
+     */
+    public void SetPassword(String password)
+    {
+        this.password = password;
+    }
+    
+    /**
+     * 
      * @return the user's avatar
      */
     public BufferedImage GetAvatar()
@@ -135,4 +154,23 @@ public class UserAccount {
     {
         this.creditCardNumber = creditCardNumber;
     }
+    
+    /**
+     * 
+     * @return the user's address
+     */
+    public String GetAddress()
+    {
+        return this.address;
+    }
+    
+    /**
+     * 
+     * @param address the address to be set
+     */
+    public void SetAddress(String address)
+    {
+        this.address = address;
+    }
+        
 }
