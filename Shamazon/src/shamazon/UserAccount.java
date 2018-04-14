@@ -18,7 +18,7 @@ public class UserAccount {
     private String address;
     private String username;
     private String password;
-    // private CreditCardInformation creditCard;
+    private String creditCardNumber;
     private BufferedImage avatar;
     // private Mailbox mailbox;
     // COLLECTION OF LISTINGS
@@ -33,13 +33,14 @@ public class UserAccount {
     * @param password The password used to login to the account
     * @param avatar An image which appears on the user's profile page
     */
-    public UserAccount(String name, String email, String address, String username, String password, BufferedImage avatar)
+    public UserAccount(String username, String password, String name, String address, String email, String creditCardNumber, BufferedImage avatar)
     {
         this.name = name;
         this.email = email;
         this.username = username;
         this.address = address;
         this.password = password;
+        this.creditCardNumber = creditCardNumber;
         this.avatar = avatar;
         
         // Credit card info
@@ -102,6 +103,24 @@ public class UserAccount {
     
     /**
      * 
+     * @return the user's password
+     */
+    public String GetPassword()
+    {
+        return this.password;
+    }
+    
+    /**
+     * 
+     * @param password the password to be set
+     */
+    public void SetPassword(String password)
+    {
+        this.password = password;
+    }
+    
+    /**
+     * 
      * @return the user's avatar
      */
     public BufferedImage GetAvatar()
@@ -117,4 +136,41 @@ public class UserAccount {
     {
        this.avatar = avatar;
     }
+    
+    /**
+     * 
+     * @return the user's credit card number
+     */
+    public String GetCreditCardNumber()
+    {
+        return creditCardNumber;
+    }
+    
+    /**
+     * 
+     * @param creditCardNumber the credit card number to be set
+     */
+    public void SetCreditCardNumber(String creditCardNumber)
+    {
+        this.creditCardNumber = creditCardNumber;
+    }
+    
+    /**
+     * 
+     * @return the user's address
+     */
+    public String GetAddress()
+    {
+        return this.address;
+    }
+    
+    /**
+     * 
+     * @param address the address to be set
+     */
+    public void SetAddress(String address)
+    {
+        this.address = address;
+    }
+        
 }
