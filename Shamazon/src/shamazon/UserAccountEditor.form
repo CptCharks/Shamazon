@@ -39,7 +39,7 @@
                                   <Component id="usernameTextField" alignment="0" pref="135" max="32767" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="passwordTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="loadAvatarButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="loadAvatarButton" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

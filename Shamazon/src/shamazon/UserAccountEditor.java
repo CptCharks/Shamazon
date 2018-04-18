@@ -7,6 +7,9 @@ package shamazon;
 
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
 
 /**
  *
@@ -22,6 +25,38 @@ public class UserAccountEditor extends javax.swing.JPanel
     public UserAccountEditor() 
     {
         initComponents();
+        
+        
+//        InputVerifier creditCardValidator = new InputVerifier() {
+//            @Override
+//            public boolean verify(JComponent input)
+//            {
+//
+//            }
+//            
+//        };
+
+        creditCardTextField.setInputVerifier(new ValidatorBase(creditCardTextField) 
+        {
+            @Override
+            public boolean ValidateInput(JComponent input)
+            {
+                String text = ((JTextField)input).getText();
+                
+                if(text.length() != 16) return false;
+                try 
+                {  
+                    Long.parseLong(text);
+                } 
+                catch (NumberFormatException e)   
+                {  
+                    return false;  
+                }
+                return true;
+            }
+        });
+        
+        
     }
 
     /**
@@ -120,7 +155,7 @@ public class UserAccountEditor extends javax.swing.JPanel
                                     .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                                     .addComponent(jLabel3)
                                     .addComponent(passwordTextField)
-                                    .addComponent(loadAvatarButton))))
+                                    .addComponent(loadAvatarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
