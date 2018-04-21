@@ -65,6 +65,13 @@ public class ShoppingCartPanel extends javax.swing.JPanel
         CheckoutButton.setText("Checkout");
 
         ClearButton.setText("Clear Cart");
+        ClearButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                ClearButtonActionPerformed(evt);
+            }
+        });
 
         TotalPriceLabel.setText("Total:");
 
@@ -98,12 +105,23 @@ public class ShoppingCartPanel extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ClearButtonActionPerformed
+    {//GEN-HEADEREND:event_ClearButtonActionPerformed
+        // TODO add your handling code here:
+        shopCart.ClearCart();
+        this.RefreshListings();
+    }//GEN-LAST:event_ClearButtonActionPerformed
+
     /**
      * Refresh the listings in the visual shopping cart panel
      */
     public void RefreshListings()
     {
+        //Get the current shopping cart list
         toDisplay = shopCart.GetCart();
+        
+        //Create an accumulator varible to display on the sidebar
+        float totalCalculate = 0f;
         
         if(!toDisplay.isEmpty())
         {
@@ -129,6 +147,9 @@ public class ShoppingCartPanel extends javax.swing.JPanel
                 
                 //Make sure the panel is visable
                 listingPanelToAdd.setVisible(true);
+                
+                //Add the listing price to the accumulator
+                totalCalculate += toDisplay.get(i).GetPrice();
             }
             //Format panel layout
             panelContain.setLayout(new BoxLayout(panelContain, BoxLayout.Y_AXIS));
@@ -137,6 +158,22 @@ public class ShoppingCartPanel extends javax.swing.JPanel
             //Add panels to scroll pane
             ListingScrollPane.getViewport().add(panelContain);
         }
+        else
+        {
+            //Clear the pane so to repopulate
+            //ListingScrollPane.removeAll();
+            JPanel panelContain = new JPanel();
+            
+             //Format panel layout
+            panelContain.setLayout(new BoxLayout(panelContain, BoxLayout.Y_AXIS));
+            //Make sure container is visable
+            panelContain.setVisible(true);
+            //Add panels to scroll pane
+            ListingScrollPane.getViewport().add(panelContain);
+        }
+        
+        //Output the total to the total label
+        TotalPriceLabel.setText("Total: $" + totalCalculate);
     }
     
     /**
