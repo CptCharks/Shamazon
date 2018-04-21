@@ -218,6 +218,19 @@ public class ListingBrowser extends javax.swing.JPanel {
             //Add panels to scroll pane
             ListingScrollPane.getViewport().add(panelContain);
         }
+        else
+        {
+            //Clear the pane so to repopulate
+            //ListingScrollPane.removeAll();
+            JPanel panelContain = new JPanel();
+            
+             //Format panel layout
+            panelContain.setLayout(new BoxLayout(panelContain, BoxLayout.Y_AXIS));
+            //Make sure container is visable
+            panelContain.setVisible(true);
+            //Add panels to scroll pane
+            ListingScrollPane.getViewport().add(panelContain);
+        }
     }
     
     public void FilterListings()
