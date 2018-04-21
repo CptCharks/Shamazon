@@ -22,19 +22,4 @@ public class ShamazonObject implements Serializable
     {
         return uuid;
     }
-    
-    public void setUuid(UUID uuid)
-    {
-        this.uuid = uuid;
-    }
-    
-//    public void writeObject(java.io.ObjectOutputStream outputStream) throws IOException
-//    {
-//        outputStream.defaultWriteObject();
-//    }
-
-    public void readObject(java.io.ObjectInputStream inputStream) throws IOException, ClassNotFoundException
-    {
-         inputStream.defaultReadObject();
-    }
 }
