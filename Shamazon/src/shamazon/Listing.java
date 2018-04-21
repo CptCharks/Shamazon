@@ -13,7 +13,7 @@ import java.awt.image.*;
  * an editor to modify itself.
  * @author Charles The Well-Endowed
  */
-public class Listing 
+public class Listing extends ShamazonObject
 {
     /**
      * The listing's name

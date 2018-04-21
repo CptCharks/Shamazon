@@ -12,7 +12,8 @@ import java.util.UUID;
  *
  * @author Luke
  */
-public class UserAccount {
+public class UserAccount extends ShamazonObject
+{
     
     private String name;
     private String email;

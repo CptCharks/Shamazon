@@ -33,7 +33,7 @@ public class DatabaseManager
     
     public DatabaseManager() { }
     
-    public static Connection OpenConnection()
+    private static Connection OpenConnection()
     {
         Connection databaseConnection = null;
         
@@ -50,7 +50,7 @@ public class DatabaseManager
         return databaseConnection;
     }
     
-    public static Statement CreateStatement()
+    private static Statement CreateStatement()
     {
         Statement statement = null;
         

@@ -20,22 +20,12 @@ public class UserAccountEditor extends javax.swing.JPanel
     private UserAccount userAccount;
 
     /**
-     * Creates new form UserAccountEditor1
+     * Creates new form UserAccountEditor
      */
-    public UserAccountEditor() 
+    public UserAccountEditor()
     {
         initComponents();
         
-        
-//        InputVerifier creditCardValidator = new InputVerifier() {
-//            @Override
-//            public boolean verify(JComponent input)
-//            {
-//
-//            }
-//            
-//        };
-
         creditCardTextField.setInputVerifier(new ValidatorBase(creditCardTextField) 
         {
             @Override
@@ -55,8 +45,6 @@ public class UserAccountEditor extends javax.swing.JPanel
                 return true;
             }
         });
-        
-        
     }
 
     /**

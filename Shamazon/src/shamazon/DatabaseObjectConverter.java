@@ -60,7 +60,7 @@ public class DatabaseObjectConverter
             byteArrayStream = new ByteArrayInputStream(byteArray);
 
             objectStream = new ObjectInputStream(byteArrayStream);
-            convertedObject =(T)objectStream.readObject();
+            convertedObject = (T)objectStream.readObject();
 
             objectStream.close();
         }
