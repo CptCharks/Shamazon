@@ -18,6 +18,11 @@ public class ShamazonObject implements Serializable
 {
     private UUID uuid;
     
+    public ShamazonObject()
+    {
+        uuid = UUID.randomUUID();S
+    }
+    
     public UUID getUuid()
     {
         return uuid;
