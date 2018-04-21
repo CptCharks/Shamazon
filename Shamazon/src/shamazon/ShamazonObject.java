@@ -20,7 +20,7 @@ public class ShamazonObject implements Serializable
     
     public ShamazonObject()
     {
-        uuid = UUID.randomUUID();S
+        uuid = UUID.randomUUID();
     }
     
     public UUID getUuid()
