@@ -45,6 +45,8 @@ public class Listing
     */
     private boolean listingAvailable;
     
+    private UUID uuid;
+    
     /**
      * Default constructor
      */
@@ -161,5 +163,15 @@ public class Listing
     {
         boolean cpAvl = this.listingAvailable;
         return cpAvl;
+    }
+    
+    public void SetUUID(UUID uuid)
+    {
+        this.uuid = uuid;
+    }
+    
+    public UUID GetUUID()
+    {
+        return this.uuid;
     }
 }
