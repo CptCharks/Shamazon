@@ -44,6 +44,10 @@ public class ShoppingCart
         //Update visual list
     }
     
+    public void ClearCart()
+    {
+        shoppingcart_list.removeAll(shoppingcart_list);
+    }
     
     public List<Listing> GetCart()
     {
