@@ -203,5 +203,6 @@ public class DatabaseManager
         ResultSet resultSet = statement.executeQuery(query);
         
         resultSet.deleteRow();
+        resultSet.beforeFirst();
     }
 }
