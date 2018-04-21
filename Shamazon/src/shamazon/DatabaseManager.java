@@ -17,6 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,13 +29,10 @@ public class DatabaseManager
     private static final String username = "ShamAdmin";
     private static final String password = "Shamazon123";
     private static final String url = "jdbc:sqlserver://shamazondb.cvll5p9eet0l.us-east-2.rds.amazonaws.com:1433;databaseName=ShamazonDB";
-
+    private static final Statement statement = CreateStatement();
+    
     public DatabaseManager() { }
     
-    /**
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.sql.SQLException
-     */
     public static Connection OpenConnection()
     {
         Connection databaseConnection = null;
@@ -50,6 +48,22 @@ public class DatabaseManager
         }
         
         return databaseConnection;
+    }
+    
+    public static Statement CreateStatement()
+    {
+        Statement statement = null;
+        
+        try
+        {
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        }
+        catch(SQLException e)
+        {
+        
+        }
+        
+        return statement;
     }
     
     public boolean CheckUserName(String uname) throws SQLException
@@ -136,4 +150,58 @@ public class DatabaseManager
         return uuid;
     }
     
+    public static <T> void UpdateObjectInDatabase(T object, String tableName, UUID uuid) throws SQLException
+    {
+        byte[] byteArray =  DatabaseObjectConverter.GetByteArray(object);
+        
+        String query = "select * from " + tableName + " where UUID = " + "\"" + uuid.toString() + "\"";
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet resultSet = statement.executeQuery(query);
+        
+        resultSet.updateBytes("Object", byteArray);
+        resultSet.updateRow();
+        resultSet.beforeFirst();
+    }
+    
+    public static <T> T GetObjectFromDatabase(String tableName, UUID uuid) throws SQLException
+    {
+        String query = "select * from " + tableName + " where UUID = " + "\"" + uuid.toString() + "\"";
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet resultSet = statement.executeQuery(query);
+        
+        byte[] byteArray = resultSet.getBytes("Object");
+        resultSet.beforeFirst();
+        
+        T object = DatabaseObjectConverter.GetObject(byteArray);
+        return object;
+    }
+    
+    public static <T> ArrayList<T> GetObjectsFromDatabase(String tableName) throws SQLException
+    {
+        String query = "select * from " + tableName;
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet resultSet = statement.executeQuery(query);
+        
+        ArrayList<T> objectList = new ArrayList<T>();
+        byte[] byteArray;
+        T object;
+        
+        while(resultSet.next())
+        {
+            byteArray = resultSet.getBytes("Object");
+            object = DatabaseObjectConverter.GetObject(byteArray);
+            objectList.add(object);
+        }
+        resultSet.beforeFirst();
+        
+        return objectList;
+    }
+    
+    public static void RemoveObjectFromDatabase(String tableName, UUID uuid) throws SQLException
+    {
+        String query = "select * from " + tableName + " where UUID = " + "\"" + uuid.toString() + "\"";
+        ResultSet resultSet = statement.executeQuery(query);
+        
+        resultSet.deleteRow();
+    }
 }
