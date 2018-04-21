@@ -12,42 +12,50 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.UUID;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 /**
  *
  * @author Seth
  */
 public class DatabaseManager 
 {
-    Connection conn = null;
-    String username =null;
-    String password =null;
-    String url = null;
+    private static final Connection connection = OpenConnection();
+    private static final String username = "ShamAdmin";
+    private static final String password = "Shamazon123";
+    private static final String url = "jdbc:sqlserver://shamazondb.cvll5p9eet0l.us-east-2.rds.amazonaws.com:1433;databaseName=ShamazonDB";
 
-    public DatabaseManager(){
-        username ="ShamAdmin";
-        password ="Shamazon123";
-        url ="jdbc:sqlserver://shamazondb.cvll5p9eet0l.us-east-2.rds.amazonaws.com:1433;databaseName=ShamazonDB";
-  
-    }
+    public DatabaseManager() { }
     
-    public void OpenConnection() throws SQLException, ClassNotFoundException
-    {
-           
     /**
-     * @param args the command line arguments
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
-    
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
-        conn = DriverManager.getConnection(url, username, password);
-        System.out.println("test");
+    public static Connection OpenConnection()
+    {
+        Connection databaseConnection = null;
+        
+        try
+        {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
+            databaseConnection = DriverManager.getConnection(url, username, password);
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        return databaseConnection;
     }
     
     public boolean CheckUserName(String uname) throws SQLException
     {
         String query = "select UserName from UserInfo";
-        Statement stmt = conn.createStatement();
+        Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next()) 
         {
@@ -59,14 +67,14 @@ public class DatabaseManager
     return false;
     }
 
-    public boolean CheckPassword(String pass) throws SQLException
+    public boolean CheckPassword(String uname, String pass) throws SQLException
     {
         String query = "select Password from UserInfo";
-        Statement stmt = conn.createStatement();
+        Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next())
         {
-            if (rs.getString("Password").equals(pass))
+            if (rs.getString("Password").equals(pass) && rs.getString("UserName").equals(uname))
             {
                 return true;
             }
@@ -78,7 +86,7 @@ public class DatabaseManager
             BufferedImage avatar) throws SQLException
     {
         String query = "select * from UserInfo";
-        Statement stmt = conn.createStatement( ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        Statement stmt = connection.createStatement( ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet rs = stmt.executeQuery(query);
         rs.moveToInsertRow();
         rs.updateString("Name", name);
@@ -94,7 +102,7 @@ public class DatabaseManager
                 String tag2, String tag3) throws SQLException
     {
         String query = "select * from UserInfo";
-        Statement stmt = conn.createStatement( ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        Statement stmt = connection.createStatement( ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet rs = stmt.executeQuery(query);
         rs.moveToInsertRow();
         rs.updateString("Name", name);
@@ -106,6 +114,26 @@ public class DatabaseManager
         rs.updateString("Tag_3", tag3);
         rs.insertRow();
         rs.beforeFirst();
+    }
+        
+    public static <T> UUID AddObjectToDatabase(T object, String tableName) throws SQLException
+    {
+        byte[] byteArray = null;
+        UUID uuid = UUID.randomUUID();
+        
+        byteArray = DatabaseObjectConverter.GetByteArray(object);
+        
+        String query = "select * from " + tableName;
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet resultSet = statement.executeQuery(query);
+        
+        resultSet.moveToInsertRow();
+        resultSet.updateBytes("Object", byteArray);
+        resultSet.updateString("UUID", uuid.toString());
+        resultSet.insertRow();
+        resultSet.beforeFirst();
+        
+        return uuid;
     }
     
 }
