@@ -22,7 +22,6 @@ public class UserAccount extends ShamazonObject
     private String password;
     private String creditCardNumber;
     private BufferedImage avatar;
-    private UUID uuid;
     // private Mailbox mailbox;
     // COLLECTION OF LISTINGS
     
@@ -174,16 +173,6 @@ public class UserAccount extends ShamazonObject
     public void SetAddress(String address)
     {
         this.address = address;
-    }
-    
-    public void SetUUID(UUID uuid)
-    {
-        this.uuid = uuid;
-    }
-    
-    public UUID GetUUID()
-    {
-        return this.uuid;
     }
         
 }

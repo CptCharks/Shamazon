@@ -130,56 +130,78 @@ public class DatabaseManager
         rs.beforeFirst();
     }
         
-    public static <T> UUID AddObjectToDatabase(T object, String tableName) throws SQLException
+    public static void AddObjectToDatabase(ShamazonObject object, String tableName) throws SQLException
     {
         byte[] byteArray = null;
-        UUID uuid = UUID.randomUUID();
         
         byteArray = DatabaseObjectConverter.GetByteArray(object);
         
         String query = "select * from " + tableName;
-        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = statement.executeQuery(query);
         
         resultSet.moveToInsertRow();
         resultSet.updateBytes("Object", byteArray);
-        resultSet.updateString("UUID", uuid.toString());
+        resultSet.updateString("UUID", object.GetUUID().toString());
+        
+        if(object instanceof UserAccount)
+        {
+            UserAccount account = (UserAccount)object;
+            resultSet.updateNString("Username", account.GetUsername());
+            resultSet.updateNString("Password", account.GetPassword());
+        }
+        else if(object instanceof Listing)
+        {
+            Listing listing = (Listing)object;
+            resultSet.updateNString("Name", listing.GetName());
+            resultSet.updateNString("Owner", listing.GetOwner().GetName());
+            resultSet.updateNString("Tag", listing.GetTag());
+        }
+        
         resultSet.insertRow();
         resultSet.beforeFirst();
-        
-        return uuid;
     }
     
-    public static <T> void UpdateObjectInDatabase(T object, String tableName, UUID uuid) throws SQLException
+    public static void UpdateObjectInDatabase(ShamazonObject object, String tableName) throws SQLException
     {
         byte[] byteArray =  DatabaseObjectConverter.GetByteArray(object);
         
-        String query = "select * from " + tableName + " where UUID = " + "\"" + uuid.toString() + "\"";
-        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        String query = "select * from " + tableName + " where UUID = " + "\"" + object.GetUUID().toString() + "\"";
         ResultSet resultSet = statement.executeQuery(query);
         
         resultSet.updateBytes("Object", byteArray);
+        
+        if(object instanceof UserAccount)
+        {
+            UserAccount account = (UserAccount)object;
+            resultSet.updateNString("Username", account.GetUsername());
+            resultSet.updateNString("Password", account.GetPassword());
+        }
+        else if(object instanceof Listing)
+        {
+            Listing listing = (Listing)object;
+            resultSet.updateNString("Name", listing.GetName());
+            resultSet.updateNString("Owner", listing.GetOwner().GetName());
+        }
+         
         resultSet.updateRow();
         resultSet.beforeFirst();
     }
     
-    public static <T> T GetObjectFromDatabase(String tableName, UUID uuid) throws SQLException
+    public static ShamazonObject GetUpdatedObjectFromDatabase(ShamazonObject object, String tableName) throws SQLException
     {
-        String query = "select * from " + tableName + " where UUID = " + "\"" + uuid.toString() + "\"";
-        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        String query = "select * from " + tableName + " where UUID = " + "\"" + object.GetUUID().toString() + "\"";
         ResultSet resultSet = statement.executeQuery(query);
         
         byte[] byteArray = resultSet.getBytes("Object");
         resultSet.beforeFirst();
         
-        T object = DatabaseObjectConverter.GetObject(byteArray);
-        return object;
+        ShamazonObject updatedObject = DatabaseObjectConverter.GetObject(byteArray);
+        return updatedObject;
     }
     
     public static <T> ArrayList<T> GetObjectsFromDatabase(String tableName) throws SQLException
     {
         String query = "select * from " + tableName;
-        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = statement.executeQuery(query);
         
         ArrayList<T> objectList = new ArrayList<T>();
@@ -197,9 +219,9 @@ public class DatabaseManager
         return objectList;
     }
     
-    public static void RemoveObjectFromDatabase(String tableName, UUID uuid) throws SQLException
+    public static void RemoveObjectFromDatabase(ShamazonObject object, String tableName) throws SQLException
     {
-        String query = "select * from " + tableName + " where UUID = " + "\"" + uuid.toString() + "\"";
+        String query = "select * from " + tableName + " where UUID = " + "\"" + object.GetUUID().toString() + "\"";
         ResultSet resultSet = statement.executeQuery(query);
         
         resultSet.deleteRow();

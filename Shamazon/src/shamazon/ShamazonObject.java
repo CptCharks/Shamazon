@@ -23,7 +23,11 @@ public class ShamazonObject implements Serializable
         uuid = UUID.randomUUID();
     }
     
-    public UUID getUuid()
+    /**
+     * 
+     * @return the UUID of the ShamazonObject 
+     */
+    public UUID GetUUID()
     {
         return uuid;
     }

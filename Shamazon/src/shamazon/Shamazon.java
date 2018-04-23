@@ -6,6 +6,7 @@
 package shamazon;
 import java.awt.Image.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.*;
 
@@ -42,14 +43,14 @@ public class Shamazon {
 //        shopPanel.setVisible(true);
     UserAccount user = new UserAccount("Me", "Password", "Luke", "Memory Lane", "222@gmail", "1111", null);
     UserAccount user1 = new UserAccount("Me1", "Password", "Luke", "Memory Lane", "222@gmail", "1111", null);
-    UUID uuid;
+    ArrayList<UserAccount> users;
     try
     {
-        uuid = DatabaseManager.AddObjectToDatabase(user, "Test");
-        user.SetUUID(uuid);
-        uuid = DatabaseManager.AddObjectToDatabase(user1, "Test");
-        user1.SetUUID(uuid);
-        DatabaseManager.GetObjectsFromDatabase("Test"); 
+        DatabaseManager.AddObjectToDatabase(user, "UserAccounts");
+       
+        DatabaseManager.AddObjectToDatabase(user1, "UserAccounts");
+        
+        users = DatabaseManager.GetObjectsFromDatabase("UserAccounts"); 
     }
     catch(SQLException e)
     {
