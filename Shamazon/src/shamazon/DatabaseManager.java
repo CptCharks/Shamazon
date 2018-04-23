@@ -149,7 +149,7 @@ public class DatabaseManager
             {
                 Listing listing = (Listing)object;
                 resultSet.updateNString("Name", listing.GetName());
-                resultSet.updateNString("Owner", listing.GetOwner().GetName());
+                resultSet.updateNString("Owner", listing.GetOwner().GetUUID().toString());
                 resultSet.updateNString("Tag", listing.GetTag());
             }
 
