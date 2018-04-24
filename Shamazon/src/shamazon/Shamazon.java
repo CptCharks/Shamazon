@@ -44,8 +44,8 @@ public class Shamazon {
         mainFrame.setVisible(true);
         tabPane.setVisible(true);
       
-        Listing list1 = new Listing("Polly Locket","Tis #######",10,null, null);
-        Listing list2 = new Listing("Bob","Tis Bob",15,null, null);
+        Listing list1 = new Listing("Polly Locket",null,"Tis #######",10,null, null);
+        Listing list2 = new Listing("Bob",null,"Tis Bob",15,null, null);
         
         listBrow.TestAddToList(list1);
         listBrow.TestAddToList(list2);

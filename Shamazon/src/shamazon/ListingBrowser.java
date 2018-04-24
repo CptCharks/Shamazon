@@ -9,6 +9,7 @@ import java.lang.String;
 import javax.swing.*;
 import java.util.*;
 import java.awt.Container;
+import java.sql.SQLException;
 /**
  *
  * @author Charles
@@ -168,7 +169,7 @@ public class ListingBrowser extends javax.swing.JPanel {
     }//GEN-LAST:event_PriceCheckBoxActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        // TODO add your handling code here:
+        SearchListings();
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CreateButtonActionPerformed
@@ -198,6 +199,11 @@ public class ListingBrowser extends javax.swing.JPanel {
      * Reference to the shopping cart to add listings to
      */
     private ShoppingCart shopCart;
+    
+    /**
+     * 
+     */
+    
     
     /**
      * Listings to show in the browser.
@@ -235,14 +241,30 @@ public class ListingBrowser extends javax.swing.JPanel {
        editFrame.setVisible(true);
     }
     
-    public void EditListing()
+    public void EditListing(Listing list)
     {
-        //Edit a given listing provided it is owned by the user and not sold
+       //Edit a given listing provided it is owned by the user and not sold
+       ListingEditorPanel editor = new ListingEditorPanel();
+       editor.LoadListing(list);
+       JFrame editFrame = new JFrame();
+       editFrame.setSize(700,500);
+       editFrame.getContentPane().add(editor);
+       editor.setVisible(true);
+       editFrame.setVisible(true);
+       
     }
     
     public void LoadListings()
     {
         //Get a number of listings from the databasemanager
+        try
+        {
+            listingsToShow = DatabaseManager.GetObjectsFromDatabase(searchString);
+        }
+        catch(SQLException e)
+        {
+            //throw e;
+        }
     }
     
     public void SetShoppingCart(ShoppingCart cart)
@@ -268,7 +290,7 @@ public class ListingBrowser extends javax.swing.JPanel {
                 ListingPreviewPanel listingPanelToAdd = new ListingPreviewPanel();
 
                 //Loadlisting to panel
-                listingPanelToAdd.LoadListingToPanel(listingsToShow.get(i));
+                listingPanelToAdd.LoadListingToPanel(listingsToShow.get(i),this);
                 listingPanelToAdd.SetShoppingCart(shopCart);
                 //Add to container that will be added to pane
                 panelContain.add(listingPanelToAdd);
@@ -305,7 +327,12 @@ public class ListingBrowser extends javax.swing.JPanel {
     
     public void SearchListings()
     {
-        
+        searchString = SearchTextField.getText();
+        if(searchString == "")
+        {
+            searchString = null;
+        }
+        this.LoadListings();
     }
         
     public void TestAddToList(Listing list)

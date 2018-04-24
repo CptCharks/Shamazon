@@ -75,6 +75,13 @@ public class ShoppingCartPanel extends javax.swing.JPanel
         ListingScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         CheckoutButton.setText("Checkout");
+        CheckoutButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                CheckoutButtonActionPerformed(evt);
+            }
+        });
 
         ClearButton.setText("Clear Cart");
         ClearButton.addActionListener(new java.awt.event.ActionListener()
@@ -136,7 +143,6 @@ public class ShoppingCartPanel extends javax.swing.JPanel
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ClearButtonActionPerformed
     {//GEN-HEADEREND:event_ClearButtonActionPerformed
-        // TODO add your handling code here:
         shopCart.ClearCart();
         this.RefreshListings();
     }//GEN-LAST:event_ClearButtonActionPerformed
@@ -145,6 +151,11 @@ public class ShoppingCartPanel extends javax.swing.JPanel
     {//GEN-HEADEREND:event_RefreshButtonActionPerformed
         this.RefreshListings();
     }//GEN-LAST:event_RefreshButtonActionPerformed
+
+    private void CheckoutButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CheckoutButtonActionPerformed
+    {//GEN-HEADEREND:event_CheckoutButtonActionPerformed
+        this.CheckOut();
+    }//GEN-LAST:event_CheckoutButtonActionPerformed
 
     /**
      * Refresh the listings in the visual shopping cart panel
@@ -213,10 +224,12 @@ public class ShoppingCartPanel extends javax.swing.JPanel
     /**
      * Passes the list to the transaction manager to allow the user to 
      * finish buying the listings.
-     */
-    void CheckOut()
+    */
+    private void CheckOut()
     {
-  
+        this.tranActMan.CheckOut(toDisplay);
+        shopCart.ClearCart();
+        this.RefreshListings();
     }
     
     
