@@ -7,6 +7,7 @@ package shamazon;
 import java.awt.BorderLayout;
 import java.awt.Image.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.*;
 
@@ -43,8 +44,8 @@ public class Shamazon {
         mainFrame.setVisible(true);
         tabPane.setVisible(true);
       
-        Listing list1 = new Listing("Polly Locket","Tis bitchin",10,null, null);
-        Listing list2 = new Listing("Bob","Tis Bob",15,null, null);
+        Listing list1 = new Listing("Polly Locket",null,"Tis #######",10,null, null);
+        Listing list2 = new Listing("Bob",null,"Tis Bob",15,null, null);
         
         listBrow.TestAddToList(list1);
         listBrow.TestAddToList(list2);
@@ -53,7 +54,7 @@ public class Shamazon {
 //        tesFr.setTitle("Test time");
 //        
 //        ShoppingCart cart = new ShoppingCart();
-//        Listing list1 = new Listing("Polly Locket","Tis bitchin",10,null, null);
+//        Listing list1 = new Listing("Polly Locket","Tis #######",10,null, null);
 //        Listing list2 = new Listing("Bob","Tis Bob",15,null, null);
 //        cart.AddListing(list1);
 //        cart.AddListing(list2);
@@ -78,6 +79,7 @@ public class Shamazon {
 //    {
 //      System.out.println(e);
 //    }
+
     }
     
     
