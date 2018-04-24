@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package shamazon;
+import java.awt.BorderLayout;
 import java.awt.Image.*;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -21,25 +22,25 @@ public class Shamazon {
     public static void main(String[] args) throws SQLException
     {
         JFrame mainFrame = new JFrame();
-        mainFrame.setSize(1000, 800);
+        mainFrame.setSize(800, 600);
         
         JTabbedPane tabPane = new JTabbedPane();
-        tabPane.setSize(800, 800);
+        tabPane.setSize(800, 600);
        
         ShoppingCart theCart = new ShoppingCart();
         TransactionManager tranMan = new TransactionManager();  
         
         ListingBrowser listBrow = new ListingBrowser(theCart);
-        tabPane.addTab("Browse", listBrow);
+        tabPane.addTab("Browse",listBrow);
+        listBrow.setVisible(true);
         
         ShoppingCartPanel shopCartPan = new ShoppingCartPanel(theCart, tranMan);
         tabPane.addTab("Checkout",shopCartPan);
+        shopCartPan.setVisible(true);
         
-        mainFrame.getContentPane().add(tabPane);
+        mainFrame.add(tabPane);
         mainFrame.setVisible(true);
         tabPane.setVisible(true);
-        shopCartPan.setVisible(true);
-        listBrow.setVisible(true);
       
         
 //        JFrame tesFr = new JFrame();

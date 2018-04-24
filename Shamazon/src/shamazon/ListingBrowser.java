@@ -45,6 +45,8 @@ public class ListingBrowser extends javax.swing.JPanel {
         PriceCheckBox = new javax.swing.JCheckBox();
         CreateButton = new javax.swing.JButton();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         ListingScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         ListingScrollPane.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -97,30 +99,34 @@ public class ListingBrowser extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(SearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(SearchButton))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(SearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(FilterSettingsLabel)
-                            .addComponent(PriceCheckBox)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(PriceFieldLower, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(LessThanLabel)
-                                .addGap(4, 4, 4)
-                                .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(SearchButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(CreateButton)))
-                .addGap(6, 6, 6)
-                .addComponent(ListingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FilterSettingsLabel)
+                                    .addComponent(PriceCheckBox)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(PriceFieldLower, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(LessThanLabel)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(CreateButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ListingScrollPane)))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +217,7 @@ public class ListingBrowser extends javax.swing.JPanel {
     public ListingBrowser(ShoppingCart cart)
     {
         shopCart = cart;
+        initComponents();
     }
     
     /**
@@ -222,7 +229,7 @@ public class ListingBrowser extends javax.swing.JPanel {
        ListingEditorPanel editor = new ListingEditorPanel();
        editor.LoadListing(newListing);
        JFrame editFrame = new JFrame();
-       editFrame.setSize(editor.getSize());
+       editFrame.setSize(700,500);
        editFrame.getContentPane().add(editor);
        editor.setVisible(true);
        editFrame.setVisible(true);
