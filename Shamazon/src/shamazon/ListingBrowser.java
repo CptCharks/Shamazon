@@ -158,6 +158,11 @@ public class ListingBrowser extends javax.swing.JPanel {
     private DatabaseManager databaseMan;
    
      //Filter Settings
+   
+    /**
+     * Reference to the shopping cart to add listings to
+     */
+    private ShoppingCart shopCart;
     
     /**
      * Listings to show in the browser.
@@ -168,6 +173,17 @@ public class ListingBrowser extends javax.swing.JPanel {
      * String to search through listings.
      */
     private String searchString;
+    
+    /**
+     * Constructor for ListingBrowser
+     * @param cart
+     * @param dm 
+     */
+    public ListingBrowser(ShoppingCart cart, DatabaseManager dm)
+    {
+        shopCart = cart;
+        databaseMan = dm;
+    }
     
     public void CreateListing()
     {
@@ -184,6 +200,10 @@ public class ListingBrowser extends javax.swing.JPanel {
         //Get a number of listings from the databasemanager
     }
     
+    public void SetShoppingCart(ShoppingCart cart)
+    {
+        shopCart = cart;
+    }
     /**
      * Refreshes listings in the scroll pane. Use to repopulate the list after
      * loading new listings.
@@ -204,7 +224,7 @@ public class ListingBrowser extends javax.swing.JPanel {
 
                 //Loadlisting to panel
                 listingPanelToAdd.LoadListingToPanel(listingsToShow.get(i));
-                
+                listingPanelToAdd.SetShoppingCart(shopCart);
                 //Add to container that will be added to pane
                 panelContain.add(listingPanelToAdd);
                 
