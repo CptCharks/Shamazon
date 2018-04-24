@@ -17,7 +17,7 @@ public class ShoppingCartPanel extends javax.swing.JPanel
     /**
      * Reference to the transactionManager for sending the purchases of the user to.
      */
-    //TransactionManager tranActMan;
+    private TransactionManager tranActMan;
     
     /**
      * Reference to the listings in the shopping cart to display
@@ -31,9 +31,20 @@ public class ShoppingCartPanel extends javax.swing.JPanel
     
     /**
      * Creates new form ShoppingCart
+     * Don't use this one
      */
     public ShoppingCartPanel()
     {
+        initComponents();
+    }
+    
+     /**
+     * Creates new constructor for ShoppingCart
+     */
+    public ShoppingCartPanel(ShoppingCart cart, TransactionManager tm)
+    {
+        tranActMan = tm;
+        shopCart = cart;
         initComponents();
     }
 

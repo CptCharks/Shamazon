@@ -15,6 +15,16 @@ import javax.swing.ImageIcon;
 public class ListingPreviewPanel extends javax.swing.JPanel {
 
     /**
+     * The listing this listingPreviewPanel shows
+     */
+    private Listing listingPreview;
+    
+    /**
+     * The shopping cart referenced by this listing
+     */
+    private ShoppingCart shopCart;
+    
+    /**
      * Creates new form ListngPreviewPanel
      */
     public ListingPreviewPanel() {
@@ -92,12 +102,23 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Set the shopping cart reference of this object
+     * @param cart 
+     */
+    public void SetShoppingCart(ShoppingCart cart)
+    {
+        shopCart = cart;
+    }
+    
     private void AddToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToCartButtonActionPerformed
-        // TODO add your handling code here:
+        shopCart.AddListing(listingPreview);
     }//GEN-LAST:event_AddToCartButtonActionPerformed
     
     public void LoadListingToPanel(Listing list)
     {
+        listingPreview = list;
+        
         //Set name, description and price for each of the listing properties
         ListingNameLabel.setText(list.GetName());
         ListingDescLabel.setText(list.GetDescription());

@@ -57,5 +57,15 @@ public class Shamazon {
       System.out.println(e);
     }
     }
+    
+    
+    void InitilizeEverything()
+    {
+        DatabaseManager dataMan = new DatabaseManager();
+        ShoppingCart theCart = new ShoppingCart();
+        TransactionManager tranMan = new TransactionManager(dataMan);        
+        ListingBrowser listBrow = new ListingBrowser(theCart,dataMan);
+        ShoppingCartPanel shopCartPan = new ShoppingCartPanel();
+    }
 
 }
