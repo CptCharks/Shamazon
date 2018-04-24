@@ -45,14 +45,18 @@ public class Listing extends ShamazonObject
     */
     private boolean listingAvailable;
     
-    private UUID uuid;
+    /**
+     * The owner of the listing
+     */
+    private UserAccount listingOwner;
     
     /**
      * Default constructor
      */
-    public Listing(String name, String desc, float price, String tag, BufferedImage img)
+    public Listing(String name, UserAccount owner, String desc, float price, String tag, BufferedImage img)
     {
         listingName = name;
+        listingOwner = owner;
         listingDescription = desc;
         listingPrice = price;
         listingTag = tag;
@@ -178,13 +182,12 @@ public class Listing extends ShamazonObject
         return cpAvl;
     }
     
-    public void SetUUID(UUID uuid)
+    /**
+     * 
+     * @return the owner of the listing
+     */
+    public UserAccount GetOwner()
     {
-        this.uuid = uuid;
-    }
-    
-    public UUID GetUUID()
-    {
-        return this.uuid;
+        return this.listingOwner;
     }
 }
