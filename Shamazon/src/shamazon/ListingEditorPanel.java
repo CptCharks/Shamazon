@@ -257,6 +257,7 @@ public class ListingEditorPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_SaveEditorButtonActionPerformed
 
     private void EditorCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditorCancelButtonActionPerformed
+
         
     }//GEN-LAST:event_EditorCancelButtonActionPerformed
 
