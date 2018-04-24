@@ -21,6 +21,7 @@ public class Shamazon {
      */
     public static void main(String[] args) throws SQLException
     {
+        
         JFrame mainFrame = new JFrame();
         mainFrame.setSize(800, 600);
         
@@ -42,7 +43,11 @@ public class Shamazon {
         mainFrame.setVisible(true);
         tabPane.setVisible(true);
       
+        Listing list1 = new Listing("Polly Locket","Tis bitchin",10,null, null);
+        Listing list2 = new Listing("Bob","Tis Bob",15,null, null);
         
+        listBrow.TestAddToList(list1);
+        listBrow.TestAddToList(list2);
 //        JFrame tesFr = new JFrame();
 //        tesFr.setSize(700,500);
 //        tesFr.setTitle("Test time");

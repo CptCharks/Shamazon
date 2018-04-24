@@ -311,6 +311,7 @@ public class ListingBrowser extends javax.swing.JPanel {
     public void TestAddToList(Listing list)
     {
         listingsToShow.add(list);
+        this.RefreshListings();
     }
 }
 
