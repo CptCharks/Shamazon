@@ -31,7 +31,8 @@ public class ListingBrowser extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         ListingScrollPane = new javax.swing.JScrollPane();
         SearchButton = new javax.swing.JButton();
@@ -42,13 +43,16 @@ public class ListingBrowser extends javax.swing.JPanel {
         PriceFieldHigher = new javax.swing.JTextField();
         LessThanLabel = new javax.swing.JLabel();
         PriceCheckBox = new javax.swing.JCheckBox();
+        CreateButton = new javax.swing.JButton();
 
         ListingScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         ListingScrollPane.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         SearchButton.setText("Search");
-        SearchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        SearchButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 SearchButtonActionPerformed(evt);
             }
         });
@@ -58,8 +62,10 @@ public class ListingBrowser extends javax.swing.JPanel {
         FilterSettingsLabel.setText("Filter Settings:");
 
         PriceFieldLower.setText("0");
-        PriceFieldLower.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        PriceFieldLower.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 PriceFieldLowerActionPerformed(evt);
             }
         });
@@ -69,9 +75,20 @@ public class ListingBrowser extends javax.swing.JPanel {
         LessThanLabel.setText("<");
 
         PriceCheckBox.setText("Price:");
-        PriceCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        PriceCheckBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 PriceCheckBoxActionPerformed(evt);
+            }
+        });
+
+        CreateButton.setText("Create Listing");
+        CreateButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                CreateButtonActionPerformed(evt);
             }
         });
 
@@ -79,50 +96,60 @@ public class ListingBrowser extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FilterSettingsLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PriceFieldLower, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LessThanLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(PriceCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(SearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(SearchButton))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(SearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchButton))
-                    .addComponent(ListingScrollPane))
-                .addContainerGap())
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FilterSettingsLabel)
+                            .addComponent(PriceCheckBox)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PriceFieldLower, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(LessThanLabel)
+                                .addGap(4, 4, 4)
+                                .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(CreateButton)))
+                .addGap(6, 6, 6)
+                .addComponent(ListingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchButton)
-                    .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchLabel))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(SearchLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SearchButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(FilterSettingsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(7, 7, 7)
                         .addComponent(PriceCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PriceFieldLower, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LessThanLabel))
-                        .addGap(0, 226, Short.MAX_VALUE))
-                    .addComponent(ListingScrollPane))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(LessThanLabel))
+                            .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(CreateButton))
+                    .addComponent(ListingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,8 +165,14 @@ public class ListingBrowser extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchButtonActionPerformed
 
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CreateButtonActionPerformed
+    {//GEN-HEADEREND:event_CreateButtonActionPerformed
+       CreateListing();
+    }//GEN-LAST:event_CreateButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateButton;
     private javax.swing.JLabel FilterSettingsLabel;
     private javax.swing.JLabel LessThanLabel;
     private javax.swing.JScrollPane ListingScrollPane;
@@ -152,11 +185,7 @@ public class ListingBrowser extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     //From this point on is the code for the ListingBrowser
-    /**
-     * Database manager reference to call functions from.
-     */
-    private DatabaseManager databaseMan;
-   
+    
      //Filter Settings
    
     /**
@@ -179,15 +208,24 @@ public class ListingBrowser extends javax.swing.JPanel {
      * @param cart
      * @param dm 
      */
-    public ListingBrowser(ShoppingCart cart, DatabaseManager dm)
+    public ListingBrowser(ShoppingCart cart)
     {
         shopCart = cart;
-        databaseMan = dm;
     }
     
+    /**
+     * Run processes for creating a new listing
+     */
     public void CreateListing()
     {
-        //Create a listing for a user
+       Listing newListing = new Listing();
+       ListingEditorPanel editor = new ListingEditorPanel();
+       editor.LoadListing(newListing);
+       JFrame editFrame = new JFrame();
+       editFrame.setSize(editor.getSize());
+       editFrame.getContentPane().add(editor);
+       editor.setVisible(true);
+       editFrame.setVisible(true);
     }
     
     public void EditListing()

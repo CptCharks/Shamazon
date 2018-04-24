@@ -58,6 +58,19 @@ public class Listing extends ShamazonObject
         listingTag = tag;
         listingImage = img;
     }
+    
+    /**
+     * Default constructor for blank listings
+     */
+    public Listing()
+    {
+        listingName = "";
+        listingDescription = "";
+        listingPrice = 0.0f;
+        listingTag = "";
+        listingImage = null;
+        
+    }
     /**
      * Sets the name of the listing.
      * @param name The name to change the listing to. 

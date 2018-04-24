@@ -20,6 +20,28 @@ public class Shamazon {
      */
     public static void main(String[] args) throws SQLException
     {
+        JFrame mainFrame = new JFrame();
+        mainFrame.setSize(1000, 800);
+        
+        JTabbedPane tabPane = new JTabbedPane();
+        tabPane.setSize(800, 800);
+       
+        ShoppingCart theCart = new ShoppingCart();
+        TransactionManager tranMan = new TransactionManager();  
+        
+        ListingBrowser listBrow = new ListingBrowser(theCart);
+        tabPane.addTab("Browse", listBrow);
+        
+        ShoppingCartPanel shopCartPan = new ShoppingCartPanel(theCart, tranMan);
+        tabPane.addTab("Checkout",shopCartPan);
+        
+        mainFrame.getContentPane().add(tabPane);
+        mainFrame.setVisible(true);
+        tabPane.setVisible(true);
+        shopCartPan.setVisible(true);
+        listBrow.setVisible(true);
+      
+        
 //        JFrame tesFr = new JFrame();
 //        tesFr.setSize(700,500);
 //        tesFr.setTitle("Test time");
@@ -32,39 +54,30 @@ public class Shamazon {
 //        
 //        ShoppingCartPanel shopPanel = new ShoppingCartPanel();
 //        shopPanel.SetCart(cart);
-//        
-//        shopPanel.RefreshListings();
-//        
-//        tesFr.getContentPane().add(shopPanel);
-//        
-//        tesFr.setVisible(true);
-//      
-//        shopPanel.setVisible(true);
-    UserAccount user = new UserAccount("Me", "Password", "Luke", "Memory Lane", "222@gmail", "1111", null);
-    UserAccount user1 = new UserAccount("Me1", "Password", "Luke", "Memory Lane", "222@gmail", "1111", null);
-    UUID uuid;
-    try
-    {
-        uuid = DatabaseManager.AddObjectToDatabase(user, "Test");
-        user.SetUUID(uuid);
-        uuid = DatabaseManager.AddObjectToDatabase(user1, "Test");
-        user1.SetUUID(uuid);
-        DatabaseManager.GetObjectsFromDatabase("Test"); 
-    }
-    catch(SQLException e)
-    {
-      System.out.println(e);
-    }
+
+
+
+//    UserAccount user = new UserAccount("Me", "Password", "Luke", "Memory Lane", "222@gmail", "1111", null);
+//    UserAccount user1 = new UserAccount("Me1", "Password", "Luke", "Memory Lane", "222@gmail", "1111", null);
+//    UUID uuid;
+//    try
+//    {
+//        uuid = DatabaseManager.AddObjectToDatabase(user, "Test");
+//        user.SetUUID(uuid);
+//        uuid = DatabaseManager.AddObjectToDatabase(user1, "Test");
+//        user1.SetUUID(uuid);
+//        DatabaseManager.GetObjectsFromDatabase("Test"); 
+//    }
+//    catch(SQLException e)
+//    {
+//      System.out.println(e);
+//    }
     }
     
     
     void InitilizeEverything()
     {
-        DatabaseManager dataMan = new DatabaseManager();
-        ShoppingCart theCart = new ShoppingCart();
-        TransactionManager tranMan = new TransactionManager(dataMan);        
-        ListingBrowser listBrow = new ListingBrowser(theCart,dataMan);
-        ShoppingCartPanel shopCartPan = new ShoppingCartPanel();
+       
     }
 
 }

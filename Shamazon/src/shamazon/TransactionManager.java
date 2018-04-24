@@ -13,14 +13,13 @@ import java.util.List;
  */
 public class TransactionManager
 {
+    //Database manager is has static functions for this
     
     List<Listing> listingsToBuy;
     
-    private DatabaseManager dataMan;
-    
-    public TransactionManager(DatabaseManager dm)
+    public TransactionManager()
     {
-        dataMan = dm;
+        
     }
     
     public void CheckOut()
