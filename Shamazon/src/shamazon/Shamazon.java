@@ -82,7 +82,7 @@ public class Shamazon {
        
         
         JDialog dialog = new JDialog();
-        UserAccount newUser = UserAccountManager.CreateNewUserAccount(dialog);
+        UserAccount newUser = UserAccountManager.CreateUserAccount(dialog);
         
         if(newUser != null)
             DatabaseManager.AddObjectToDatabase(newUser, "UserAccounts");

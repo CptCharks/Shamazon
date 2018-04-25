@@ -7,12 +7,13 @@ package shamazon;
 import java.util.*;
 import java.lang.String;
 import java.awt.image.*;
+import java.io.Serializable;
 /**
  * Message: Contains a message string containing the message, a Message title
  * and the names of the sender and receiver of the message.
  * 
  */
-public class Message 
+public class Message implements Serializable
 {
     
     /**

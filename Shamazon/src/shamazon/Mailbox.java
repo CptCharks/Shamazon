@@ -7,34 +7,51 @@ package shamazon;
 import java.util.*;
 import java.lang.String;
 import java.awt.image.*;
+import java.io.Serializable;
 
 
 /**
  *
  * 
  */
-public class Mailbox 
+public class Mailbox implements Serializable
 {
-//    private Message message;
-//    
-//    
-//    
-//    public Message CreateMessage()
-//    {
-//        
-//    }
-//    public Message DeleteMessage()
-//    {
-//        
-//    }
-//    public Message SendMessage()
-//    {
-//        
-//    }
-//    public Message RecieveMessage()
-//    {
-//        
-//    }
+    private ArrayList<Message> inbox;
+    private UserAccount owner;
+    
+    /**
+     * Creates a new Mailbox
+     */
+    public Mailbox(UserAccount owner) 
+    { 
+        this.owner = owner;
+    }
+    
+    public void SendMessage(UserAccount receiver, Message message)
+    {
+        Mailbox receivingMailbox = receiver.GetMailbox();
+    }
+    
+    public void RecieveMessage(UserAccount sender, Message message)
+    {
+        
+    }
+                
+    public void AddMessage(Message message)
+    {
+        inbox.add(message);
+    }
+    
+    public void RemoveMessage(Message message)
+    {
+        inbox.remove(message);
+    }
+    
+    
+    public UserAccount GetOwner()
+    {
+        return this.owner;
+    }
     
     
 }

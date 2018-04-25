@@ -31,8 +31,7 @@ public class UserAccount extends ShamazonObject
     private ImageIcon avatar;
     private ArrayList<Listing> postedListings;
     private ArrayList<Listing> purchasedListings;
-    // private Mailbox mailbox;
-    // COLLECTION OF LISTINGS
+    private Mailbox mailbox;
     
     /**
      * Creates a new UserAccount with default field values
@@ -61,8 +60,6 @@ public class UserAccount extends ShamazonObject
         this.password = password;
         this.creditCardNumber = creditCardNumber;
         this.avatar = avatar;
-        // Credit card info
-        // this.mailbox = new Mailbox()
     }
     
     /**
@@ -225,5 +222,14 @@ public class UserAccount extends ShamazonObject
     public void RemovePurchasedListing(Listing listing)
     {
         purchasedListings.remove(listing);
+    }
+    
+    /**
+     * 
+     * @return the user's mailbox
+     */
+    public Mailbox GetMailbox()
+    {
+        return this.mailbox;
     }
 }
