@@ -49,8 +49,8 @@ public class ImageLoader
     }
     
     /**
-     * Reads the image selected from a file dialog into a BufferedImage.
-     * @return a BufferedImage which displays the selected image file
+     * Reads the image selected from a file dialog into an ImageIcon.
+     * @return an ImageIcon which displays the selected image file
      */
     public static ImageIcon LoadImage()
     {
