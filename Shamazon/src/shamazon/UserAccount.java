@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -28,6 +29,8 @@ public class UserAccount extends ShamazonObject
     private String password;
     private String creditCardNumber;
     private ImageIcon avatar;
+    private ArrayList<Listing> postedListings;
+    private ArrayList<Listing> purchasedListings;
     // private Mailbox mailbox;
     // COLLECTION OF LISTINGS
     
@@ -186,5 +189,41 @@ public class UserAccount extends ShamazonObject
     public void SetAddress(String address)
     {
         this.address = address;
+    }
+    
+    /**
+     * Adds a posted listing
+     * @param listing the listing to be posted
+     */
+    public void AddPostedListing(Listing listing)
+    {
+        postedListings.add(listing);
+    }
+    
+    /**
+     * Removes a posted listing
+     * @param listing the listing to be removed
+     */
+    public void RemovePostedListing(Listing listing)
+    {
+        postedListings.remove(listing);
+    }
+    
+    /**
+     * Adds a purchased listing
+     * @param listing the listing which was purchased
+     */
+    public void AddPurchasedListing(Listing listing)
+    {
+        purchasedListings.add(listing);
+    }
+    
+    /**
+     * Removes a purchased listing
+     * @param listing the listing which was returned
+     */
+    public void RemovePurchasedListing(Listing listing)
+    {
+        purchasedListings.remove(listing);
     }
 }
