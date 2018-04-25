@@ -9,6 +9,7 @@ import java.lang.String;
 import javax.swing.*;
 import java.util.*;
 import java.awt.Container;
+import java.awt.Label;
 import java.sql.SQLException;
 /**
  *
@@ -250,16 +251,26 @@ public class ListingBrowser extends javax.swing.JPanel {
      */
     public void CreateListing(UserAccount user)
     {
-       Listing newListing = new Listing();
-       newListing.SetOwner(user);
-       ListingEditorPanel editor = new ListingEditorPanel();
-       editor.LoadListing(newListing);
-       JFrame editFrame = new JFrame();
-       editFrame.setSize(700,500);
-       editFrame.getContentPane().add(editor);
-       editor.setVisible(true);
-       editFrame.setVisible(true);
-       editor.creating = false;
+       if(user != null)
+       {
+            Listing newListing = new Listing();
+            newListing.SetOwner(user);
+            ListingEditorPanel editor = new ListingEditorPanel();
+            editor.LoadListing(newListing);
+            JFrame editFrame = new JFrame();
+            editFrame.setSize(700,500);
+            editFrame.getContentPane().add(editor);
+            editor.setVisible(true);
+            editFrame.setVisible(true);
+            editor.creating = true;
+       }
+       else
+       {
+           JDialog warning = new JDialog();
+           Label warningLabel = new Label();
+           warningLabel.setText("No user account logged in!");
+           warning.add(warningLabel);
+       }
     }
     
     public void EditListing(Listing list)

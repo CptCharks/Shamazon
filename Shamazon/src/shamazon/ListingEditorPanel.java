@@ -279,7 +279,7 @@ public class ListingEditorPanel extends javax.swing.JPanel {
             {
 
             }
-            System.exit(0);
+            this.getParent().setVisible(false);
         }
         else
         {
