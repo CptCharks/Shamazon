@@ -516,4 +516,42 @@ public class DatabaseManager
             if(statement != null) statement.close();
         }
     }
+    
+    /**
+     * Gets a UserAccount object from the database with the corresponding username
+     * @param username the username to search for
+     * @return the matching UserAccount
+     */
+    public static UserAccount GetUserAccountByName(String username) throws SQLException
+    {
+        Statement statement = null;
+        
+        try
+        {
+            String query = "select * from UserAccounts where Username = " + "\"" + username + "\"";
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            byte[] byteArray;
+            UserAccount account = null;
+
+            if(resultSet.next())
+            {
+                byteArray = resultSet.getBytes("Object");
+                account = DatabaseObjectConverter.GetObject(byteArray);
+            }
+            resultSet.beforeFirst();
+            
+            return account;
+        }
+        catch(SQLException e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if(statement != null) statement.close();
+        }
+    }
 }
