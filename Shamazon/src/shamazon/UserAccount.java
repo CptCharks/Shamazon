@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Stores information about a user
  * @author Luke
  */
 public class UserAccount extends ShamazonObject

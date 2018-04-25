@@ -11,7 +11,8 @@ import javax.swing.JComponent;
 import javax.swing.border.Border;
 
 /**
- *
+ * Provides an abstract base class for input validation which highlights
+ * a component's border red when it contains an invalid input
  * @author Luke
  */
 public abstract class ValidatorBase extends InputVerifier

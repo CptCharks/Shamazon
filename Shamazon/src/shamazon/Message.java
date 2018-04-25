@@ -24,11 +24,11 @@ public class Message
      */
     private String title;
     /**
-     * A String containing the name of the sender
+     * The sender's account
      */    
     private UserAccount sender;
     /**
-     * A String containing the name of the recipient of the message.
+     * The recipient's account
      */   
     private UserAccount recipient;
     

@@ -436,4 +436,84 @@ public class DatabaseManager
             if(statement != null) statement.close();
         }
     }
+    
+    /**
+     * Gets all listings from the database with a matching name
+     * @param name the name to search for
+     * @return an ArrayList of listings with matching names
+     * @throws SQLException 
+     */
+    public static ArrayList<Listing> GetListingsByName(String name) throws SQLException
+    {
+        Statement statement = null;
+        ArrayList<Listing> listings = new ArrayList<Listing>();
+        try
+        {
+            String query = "select * from Listings where Name = " + "\"" + name + "\"";
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            byte[] byteArray;
+            Listing listing;
+
+            while(resultSet.next())
+            {
+                byteArray = resultSet.getBytes("Object");
+                listing = DatabaseObjectConverter.GetObject(byteArray);
+                listings.add(listing);
+            }
+            resultSet.beforeFirst();
+            
+            return listings;
+        }
+        catch(SQLException e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if(statement != null) statement.close();
+        }
+    }
+    
+    /**
+     * Gets all listings from the database with a matching tag
+     * @param tag the tag to search for
+     * @return an ArrayList of all matching listings
+     * @throws SQLException 
+     */
+    public static ArrayList<Listing> GetListingsByTag(String tag) throws SQLException
+    {
+        Statement statement = null;
+        ArrayList<Listing> listings = new ArrayList<Listing>();
+        try
+        {
+            String query = "select * from Listings where Name = " + "\"" + tag + "\"";
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            byte[] byteArray;
+            Listing listing;
+
+            while(resultSet.next())
+            {
+                byteArray = resultSet.getBytes("Object");
+                listing = DatabaseObjectConverter.GetObject(byteArray);
+                listings.add(listing);
+            }
+            resultSet.beforeFirst();
+            
+            return listings;
+        }
+        catch(SQLException e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if(statement != null) statement.close();
+        }
+    }
 }

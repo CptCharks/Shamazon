@@ -10,7 +10,7 @@ import java.awt.Frame;
 import javax.swing.JDialog;
 
 /**
- *
+ * Provides static functions to create and edit UserAccount objects in the database
  * @author Luke
  */
 public class UserAccountManager

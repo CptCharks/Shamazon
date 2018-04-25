@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- *
+ *  Converts java objects to and from byte arrays
  * @author Luke
  */
 public class DatabaseObjectConverter
