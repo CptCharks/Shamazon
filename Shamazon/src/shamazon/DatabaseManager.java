@@ -379,7 +379,7 @@ public class DatabaseManager
         Statement statement = null;
         try
         {
-            String query = "select * from " + tableName + " where UUID = " + "\"" + object.GetUUID().toString() + "\"";
+            String query = "select * from " + tableName + " where UUID = " + "'" + object.GetUUID().toString() + "'";
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
@@ -409,7 +409,7 @@ public class DatabaseManager
         ArrayList<Listing> listings = new ArrayList<Listing>();
         try
         {
-            String query = "select * from Listings where Owner = " + "\"" + owner.GetUUID().toString() + "\"";
+            String query = "select * from Listings where Owner = " + "'" + owner.GetUUID().toString() + "'";
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
@@ -449,7 +449,7 @@ public class DatabaseManager
         ArrayList<Listing> listings = new ArrayList<Listing>();
         try
         {
-            String query = "select * from Listings where Name = " + "\"" + name + "\"";
+            String query = "select * from Listings where Name = " + "'" + name + "'";
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
@@ -489,7 +489,7 @@ public class DatabaseManager
         ArrayList<Listing> listings = new ArrayList<Listing>();
         try
         {
-            String query = "select * from Listings where Name = " + "\"" + tag + "\"";
+            String query = "select * from Listings where Name = " + "'" + tag + "'";
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
@@ -528,7 +528,7 @@ public class DatabaseManager
         
         try
         {
-            String query = "select * from UserAccounts where Username = " + "\"" + username + "\"";
+            String query = "select * from UserAccounts where Username = " + "'" + username + "'";
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
