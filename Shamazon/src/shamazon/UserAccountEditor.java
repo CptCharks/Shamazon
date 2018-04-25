@@ -134,6 +134,7 @@ public class UserAccountEditor extends javax.swing.JPanel
         emailTextField.setName(""); // NOI18N
 
         avatarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
+        avatarLabel.setPreferredSize(new java.awt.Dimension(150, 150));
 
         creditCardTextField.setName(""); // NOI18N
 
@@ -197,7 +198,7 @@ public class UserAccountEditor extends javax.swing.JPanel
                             .addComponent(creditCardTextField)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(avatarLabel)
+                                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -220,7 +221,7 @@ public class UserAccountEditor extends javax.swing.JPanel
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(avatarLabel)
+                        .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
@@ -285,7 +286,7 @@ public class UserAccountEditor extends javax.swing.JPanel
 
     private void LoadAvatar(ImageIcon avatar)
     {
-        avatar = new ImageIcon(avatar.getImage().getScaledInstance(100, 100, 0));
+        avatar = new ImageIcon(avatar.getImage().getScaledInstance(avatarLabel.getWidth(), avatarLabel.getHeight(), 0));
        
         avatarLabel.setIcon(avatar);
     }

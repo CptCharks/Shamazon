@@ -5,6 +5,8 @@
  */
 package shamazon;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Luke
@@ -59,6 +61,9 @@ public class UserAccountViewer extends javax.swing.JPanel
         jLabel6.setText("Email");
 
         avatarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
+        avatarLabel.setMaximumSize(new java.awt.Dimension(150, 150));
+        avatarLabel.setMinimumSize(new java.awt.Dimension(150, 150));
+        avatarLabel.setPreferredSize(new java.awt.Dimension(150, 150));
 
         usernameLabel.setText("jLabel1");
 
@@ -76,7 +81,7 @@ public class UserAccountViewer extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(avatarLabel)
+                .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -93,7 +98,7 @@ public class UserAccountViewer extends javax.swing.JPanel
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
                             .addComponent(emailLabel))))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +125,7 @@ public class UserAccountViewer extends javax.swing.JPanel
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addressLabel))
-                    .addComponent(avatarLabel))
+                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -147,6 +152,6 @@ public class UserAccountViewer extends javax.swing.JPanel
         addressLabel.setText(account.GetAddress());
         emailLabel.setText(account.GetEmail());
         creditCardLabel.setText(account.GetCreditCardNumber());
-        avatarLabel.setIcon(account.GetAvatar());
+        avatarLabel.setIcon(new ImageIcon(account.GetAvatar().getImage().getScaledInstance(avatarLabel.getWidth(), avatarLabel.getHeight(), 0)));
     }
 }
