@@ -12,7 +12,8 @@ import java.awt.image.*;
  * and the names of the sender and receiver of the message.
  * 
  */
-public class Message {
+public class Message 
+{
     
     /**
      * A String holding the message
@@ -25,29 +26,38 @@ public class Message {
     /**
      * A String containing the name of the sender
      */    
-    private String sender;
+    private UserAccount sender;
     /**
      * A String containing the name of the recipient of the message.
      */   
-    private String recipient;
+    private UserAccount recipient;
     
-    
+    public Message(String message, String title, UserAccount sender, UserAccount recipient)
+    {
+        this.message = message;
+        this.title = title;
+        this.sender = sender;
+        this.recipient = recipient;
+    }
 
-/**
- * Returns the message
- * @return message
- */
+    /**
+     * Returns the message
+     * @return message
+     */
     public String GetMessage()
     {
         return message;
     }
-/**
- * Sets the message to send
- */
-    public void SetMessage()
+    
+    /**
+     * 
+     * @param message the message to set
+     */
+    public void SetMessage(String message)
     {
         this.message = message;
     }
+    
     /**
      * returns the title of the message to be sent
      * @return title
@@ -56,40 +66,49 @@ public class Message {
     {
         return title;
     }
+    
     /**
-     * Sets the title on the message to be sent
+     * 
+     * @param title the title to set
      */
-    public void SetTitle()
+    public void SetTitle(String title)
     {
         this.title = title;
     }
+    
     /**
      * Returns the name of the user sending the message
      * @return sender
      */
-    public String GetSender()
+    public UserAccount GetSender()
     {   
         return sender;
     }
+    
     /**
-     * Sets the name of the sender of the message
+     * 
+     * @param sender the sender to set
      */
-    public void SetSender()
+    public void SetSender(UserAccount sender)
     {
         this.sender = sender;
     }
+    
     /**
      * Returns the intended recipient of the message
      * @return recipient
      */
-    public String GetRec()
+    public UserAccount GetRecipient()
     {   
         return recipient;
     }
+    
+    
     /**
-     * Set the Recipient of the message.
+     * 
+     * @param recipient the recipient to set
      */
-    public void SetRec()
+    public void SetRecipient(UserAccount recipient)
     {
         this.recipient = recipient;
     }
