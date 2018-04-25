@@ -107,10 +107,44 @@ public class DatabaseManager
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             
-           if(resultSet.getNString("Password").equals(password))
-               return true;
-           else
-               return false;
+            if(resultSet.next())
+            {
+                if(resultSet.getNString("Password").equals(password))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+        catch(SQLException e)
+        {
+            throw e;
+        }
+        finally
+        {
+            statement.close();
+        }
+    }
+    
+     public static boolean IsPasswordCorrect(String username, String password) throws SQLException
+    {
+        Statement statement = null;
+        try
+        {
+            String query = "select * from UserAccounts where Username = " + "'" + username + "'";
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            if(resultSet.next())
+            {
+                if(resultSet.getNString("Password").equals(password))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
         }
         catch(SQLException e)
         {
