@@ -32,8 +32,14 @@ public class DatabaseManager
     
     public DatabaseManager() { }
     
+    /**
+     * Opens a connection to the Database
+     * 
+     * @return  a connection Object
+     */
     private static Connection OpenConnection()
     {
+
         Connection databaseConnection = null;
         
         try
@@ -49,6 +55,14 @@ public class DatabaseManager
         return databaseConnection;
     }
     
+    /**
+     * Checks if a new username already exists for another account in the database
+     * 
+     * @param account           account with username to be checked
+     * @param newUsername       new username being checked for availability
+     * @return                  true if username does not already exist in database, false if it does exist
+     * @throws SQLException 
+     */
     public static boolean IsUsernameAvailable(UserAccount account, String newUsername) throws SQLException
     {
         Statement statement = null;
@@ -76,6 +90,14 @@ public class DatabaseManager
         }
     }
 
+    /**
+     * Checks a password to ensure it's the one associated with the users account
+     * 
+     * @param account   
+     * @param password
+     * @return
+     * @throws SQLException 
+     */
     public static boolean IsPasswordCorrect(UserAccount account, String password) throws SQLException
     {
         Statement statement = null;
