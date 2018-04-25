@@ -85,7 +85,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="TotalPriceLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Total:"/>
+        <Property name="text" type="java.lang.String" value="Total: $0.0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="RefreshButton">
