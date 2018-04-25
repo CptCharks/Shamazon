@@ -212,10 +212,10 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         if(listingToEdit.GetListingImage() != null)
         {
             //Get bufferedImage from the listing
-            BufferedImage listImage = listingToEdit.GetListingImage();
+            ImageIcon listImage = listingToEdit.GetListingImage();
             
             //Create a previewIcon from a scaled instance of listImage
-            ImageIcon previewIcon = new ImageIcon(listImage.getScaledInstance(ImagePreviewLabel.getWidth(),ImagePreviewLabel.getHeight(),0));
+            ImageIcon previewIcon = new ImageIcon(listImage.getImage().getScaledInstance(ImagePreviewLabel.getWidth(),ImagePreviewLabel.getHeight(),0));
             
             //Set label to previewIcon.
             ImagePreviewLabel.setIcon(previewIcon);
@@ -234,7 +234,7 @@ public class ListingEditorPanel extends javax.swing.JPanel {
         
         if(editorImagePath != null)
         {
-            BufferedImage imgBuff = ImageLoader.ImageFileToBufferedImage(editorImagePath);
+            ImageIcon imgBuff = ImageLoader.ImageFileToBufferedImage(editorImagePath);
             if (imgBuff != null)
             {
                 listingToEdit.SetListingImage(imgBuff);

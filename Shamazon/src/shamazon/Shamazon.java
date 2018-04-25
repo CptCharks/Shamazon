@@ -79,6 +79,32 @@ public class Shamazon {
 //    {
 //      System.out.println(e);
 //    }
+       
+        
+        JDialog dialog = new JDialog();
+        UserAccount newUser = UserAccountManager.CreateNewUserAccount(dialog);
+        
+        if(newUser != null)
+            DatabaseManager.AddObjectToDatabase(newUser, "UserAccounts");
+        
+        try
+        {
+            newUser = (UserAccount)DatabaseManager.GetUpdatedObjectFromDatabase(newUser, "UserAccounts");
+        }
+        catch(SQLException e)
+        {
+            
+        }
+        
+        try
+        {
+            dialog = new JDialog();
+            newUser = UserAccountManager.EditUserAccount(dialog, newUser);
+        }
+        catch(Exception e)
+        {
+            e.toString();
+        }
 
     }
     

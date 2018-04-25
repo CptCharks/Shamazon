@@ -109,10 +109,10 @@ public class ListingPreviewCartPanel extends javax.swing.JPanel
         if(list.GetListingImage() != null)
         {
             //Get bufferedImage from the listing
-            BufferedImage listImage = list.GetListingImage();
+            ImageIcon listImage = list.GetListingImage();
             
             //Create a previewIcon from a scaled instance of listImage
-            ImageIcon previewIcon = new ImageIcon(listImage.getScaledInstance(ListingImageLabel.getWidth(),ListingImageLabel.getHeight(),0));
+            ImageIcon previewIcon = new ImageIcon(listImage.getImage().getScaledInstance(ListingImageLabel.getWidth(),ListingImageLabel.getHeight(),0));
             
             //Set label to previewIcon.
             ListingImageLabel.setIcon(previewIcon);

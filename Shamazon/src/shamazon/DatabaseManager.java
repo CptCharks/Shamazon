@@ -49,17 +49,20 @@ public class DatabaseManager
         return databaseConnection;
     }
     
-    public static boolean IsUsernameAvailable(String username) throws SQLException
+    public static boolean IsUsernameAvailable(UserAccount account, String newUsername) throws SQLException
     {
         Statement statement = null;
         try
         {
-            String query = "select * from UserAccounts where Username = " + "'" + username + "'";
+            String query = "select * from UserAccounts where Username = " + "'" + newUsername + "'";
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             
-            if(resultSet.next()) 
-                return false;
+            if(resultSet.next())
+                if(resultSet.getNString("UUID") != account.GetUUID().toString())
+                    return false;
+                else
+                    return true;
             else 
                 return true;
         }
@@ -128,7 +131,8 @@ public class DatabaseManager
         {
             byte[] byteArray = null;
 
-            byteArray = DatabaseObjectConverter.GetByteArray(object);
+            if(object instanceof UserAccount)
+                byteArray = DatabaseObjectConverter.GetByteArray((UserAccount)object);
 
             String query = "select * from " + tableName;
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -216,11 +220,16 @@ public class DatabaseManager
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
-
-            byte[] byteArray = resultSet.getBytes("Object");
+            
+            byte[] byteArray = null;
+            if(resultSet.next())
+               byteArray = resultSet.getBytes("Object");
+            
             resultSet.beforeFirst();
-
-            updatedObject = DatabaseObjectConverter.GetObject(byteArray);
+            if(byteArray != null)
+                updatedObject = DatabaseObjectConverter.GetObject(byteArray);
+            else
+                return null;
         }
         catch(SQLException e)
         {

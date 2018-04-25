@@ -15,26 +15,26 @@ import java.awt.image.*;
  */
 public class Mailbox 
 {
-    private Message message;
-    
-    
-    
-    public Message CreateMessage()
-    {
-        
-    }
-    public Message DeleteMessage()
-    {
-        
-    }
-    public Message SendMessage()
-    {
-        
-    }
-    public Message RecieveMessage()
-    {
-        
-    }
+//    private Message message;
+//    
+//    
+//    
+//    public Message CreateMessage()
+//    {
+//        
+//    }
+//    public Message DeleteMessage()
+//    {
+//        
+//    }
+//    public Message SendMessage()
+//    {
+//        
+//    }
+//    public Message RecieveMessage()
+//    {
+//        
+//    }
     
     
 }

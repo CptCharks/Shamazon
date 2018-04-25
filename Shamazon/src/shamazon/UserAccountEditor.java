@@ -6,9 +6,11 @@
 package shamazon;
 
 import java.awt.image.BufferedImage;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 
 /**
@@ -18,13 +20,18 @@ import javax.swing.JTextField;
 public class UserAccountEditor extends javax.swing.JPanel 
 {
     private UserAccount userAccount;
+    private ImageIcon avatar;
+    private JDialog parentDialog;
 
     /**
      * Creates new form UserAccountEditor
      */
-    public UserAccountEditor()
+    public UserAccountEditor(UserAccount userAccount, JDialog parentDialog)
     {
         initComponents();
+        this.userAccount = userAccount;
+        this.parentDialog = parentDialog;
+        LoadUserAccount();
         
         creditCardTextField.setInputVerifier(new ValidatorBase(creditCardTextField) 
         {
@@ -43,6 +50,27 @@ public class UserAccountEditor extends javax.swing.JPanel
                     return false;  
                 }
                 return true;
+            }
+        });
+        
+        usernameTextField.setInputVerifier(new ValidatorBase(creditCardTextField) 
+        {
+            @Override
+            public boolean ValidateInput(JComponent input)
+            {
+                String text = ((JTextField)input).getText();
+                
+                try
+                {
+                    if(DatabaseManager.IsUsernameAvailable(userAccount, usernameTextField.getText()))
+                        return true;
+                    else
+                        return false;
+                }
+                catch(SQLException e)
+                {
+                    return false;
+                }
             }
         });
     }
@@ -67,9 +95,9 @@ public class UserAccountEditor extends javax.swing.JPanel
         usernameTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         loadAvatarButton = new javax.swing.JButton();
@@ -85,7 +113,6 @@ public class UserAccountEditor extends javax.swing.JPanel
         emailTextField.setName(""); // NOI18N
 
         avatarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
-        avatarLabel.setPreferredSize(new java.awt.Dimension(100, 100));
 
         creditCardTextField.setName(""); // NOI18N
 
@@ -95,14 +122,28 @@ public class UserAccountEditor extends javax.swing.JPanel
 
         passwordTextField.setName(""); // NOI18N
 
-        jButton1.setText("Cancel");
-        jButton1.setName("cancelButton"); // NOI18N
+        cancelButton.setText("Cancel");
+        cancelButton.setName("cancelButton"); // NOI18N
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                cancelButtonMouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("Username");
 
-        jButton2.setText("Save");
-        jButton2.setName("saveButton"); // NOI18N
-        jButton2.setPreferredSize(new java.awt.Dimension(65, 23));
+        saveButton.setText("Save");
+        saveButton.setName("saveButton"); // NOI18N
+        saveButton.setPreferredSize(new java.awt.Dimension(65, 23));
+        saveButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                saveButtonMouseClicked(evt);
+            }
+        });
 
         jLabel3.setText("Password");
 
@@ -135,7 +176,7 @@ public class UserAccountEditor extends javax.swing.JPanel
                             .addComponent(creditCardTextField)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(avatarLabel)
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -147,9 +188,9 @@ public class UserAccountEditor extends javax.swing.JPanel
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(cancelButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,7 +199,7 @@ public class UserAccountEditor extends javax.swing.JPanel
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(avatarLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
@@ -187,8 +228,8 @@ public class UserAccountEditor extends javax.swing.JPanel
                 .addComponent(creditCardTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelButton)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -199,15 +240,35 @@ public class UserAccountEditor extends javax.swing.JPanel
 
     private void loadAvatarButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_loadAvatarButtonMouseClicked
     {//GEN-HEADEREND:event_loadAvatarButtonMouseClicked
-        BufferedImage image = ImageLoader.LoadImage();
-        ImageIcon avatarIcon = new ImageIcon(image.getScaledInstance(avatarLabel.getWidth(),avatarLabel.getHeight(),0));
-
-        avatarLabel.setIcon(avatarIcon);
+        avatar = ImageLoader.LoadImage();
+        LoadAvatar(avatar);
     }//GEN-LAST:event_loadAvatarButtonMouseClicked
 
-    public void LoadUserAccount(UserAccount user)
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_cancelButtonMouseClicked
+    {//GEN-HEADEREND:event_cancelButtonMouseClicked
+        this.userAccount = null;
+        parentDialog.dispose();
+    }//GEN-LAST:event_cancelButtonMouseClicked
+
+    private void saveButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_saveButtonMouseClicked
+    {//GEN-HEADEREND:event_saveButtonMouseClicked
+        SaveUserAccount();
+        parentDialog.dispose();
+    }//GEN-LAST:event_saveButtonMouseClicked
+
+    private void LoadAvatar(ImageIcon avatar)
     {
-        this.userAccount = user;
+        ImageIcon avatarIcon = new ImageIcon(avatar.getImage().getScaledInstance(100, 100, 0));
+
+        avatarLabel.setIcon(avatarIcon);
+    }
+    
+    public void LoadUserAccount()
+    {
+        if(userAccount == null) return;
+        
+        this.avatar = userAccount.GetAvatar();
+        if(avatar != null) LoadAvatar(avatar);
         
         usernameTextField.setText(userAccount.GetUsername());
         passwordTextField.setText(userAccount.GetPassword());
@@ -216,13 +277,24 @@ public class UserAccountEditor extends javax.swing.JPanel
         emailTextField.setText(userAccount.GetEmail());
         creditCardTextField.setText(userAccount.GetCreditCardNumber());
     }
+    
+    private void SaveUserAccount()
+    {
+        userAccount.SetUsername(usernameTextField.getText());
+        userAccount.SetPassword(passwordTextField.getText());
+        userAccount.SetName(nameTextField.getText());
+        userAccount.SetAddress(addressTextField.getText());
+        userAccount.SetEmail(emailTextField.getText());
+        userAccount.SetCreditCardNumber(creditCardTextField.getText());
+        userAccount.SetAvatar(avatar);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTextField;
     private javax.swing.JLabel avatarLabel;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JTextField creditCardTextField;
     private javax.swing.JTextField emailTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -232,6 +304,7 @@ public class UserAccountEditor extends javax.swing.JPanel
     private javax.swing.JButton loadAvatarButton;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTextField passwordTextField;
+    private javax.swing.JButton saveButton;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
