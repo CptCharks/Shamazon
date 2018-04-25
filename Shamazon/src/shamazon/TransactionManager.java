@@ -6,6 +6,7 @@
 package shamazon;
 
 import java.util.List;
+import java.sql.SQLException;
 
 /**
  *
@@ -15,11 +16,16 @@ public class TransactionManager
 {
     //Database manager is has static functions for this
     
+    /**
+     * Reference to the user
+     */
+    private UserAccount userAccount;
+    
     private List<Listing> listingsToBuy;
     
-    public TransactionManager()
+    public TransactionManager(UserAccount user)
     {
-        
+        userAccount = user;
     }
     
     public void CheckOut(List<Listing> toBuy)
@@ -28,13 +34,24 @@ public class TransactionManager
        PurchaseListing();
     }
    
-    public void PurchaseListing()
+    private void PurchaseListing()
     {
         //Add to the user's purchased list if we're still doing it
         
         for(int i = 0; i < listingsToBuy.size()-1;i++)
         {
-            //DatabaseManager.RemoveObjectFromDatabase();
+            try
+            {
+                userAccount.AddPurchasedListing(listingsToBuy.get(i));
+                DatabaseManager.RemoveObjectFromDatabase(listingsToBuy.get(i),"Listings");
+                listingsToBuy.get(i).GetOwner().RemovePostedListing(listingsToBuy.get(i));
+            }
+            catch(SQLException e)
+            {
+                
+            }
         }
+        
+        listingsToBuy.clear();
     }
 }
