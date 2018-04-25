@@ -21,7 +21,7 @@ public class UserAccountManager
      * @param owner the owner frame for the modal dialog to be created
      * @return the new UserAccount if successfully created, otherwise null
      */
-    public static UserAccount CreateNewUserAccount(Frame owner)
+    public static UserAccount CreateUserAccount(Frame owner)
     {
         UserAccount newAccount = new UserAccount();
         newAccount = CreateUserAccountEditor(owner, newAccount);
@@ -68,7 +68,7 @@ public class UserAccountManager
      * @param owner the owner dialog for the modal dialog to be created
      * @return the new UserAccount if successfully created, otherwise null
      */
-    public static UserAccount CreateNewUserAccount(Dialog owner)
+    public static UserAccount CreateUserAccount(Dialog owner)
     {
         UserAccount newAccount = new UserAccount();
         newAccount = CreateUserAccountEditor(owner, newAccount);
