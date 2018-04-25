@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
  *
  * @author Seth
  */
-public class LoginFrame extends javax.swing.JFrame {
+public class LoginFrame extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form LoginFrame
@@ -184,13 +185,15 @@ public class LoginFrame extends javax.swing.JFrame {
         try {
             if(DatabaseManager.IsPasswordCorrect(jTextFieldUser.getText(), pass) == true)
             {
+               UserAccount user = DatabaseManager.GetUserAccountByName(jTextFieldUser.getText());
                 System.out.println("Found It");
-                
+                ShamazonApplication shamApp = new ShamazonApplication(user);
+                this.dispose();
                 // TODO add your handling code here:
             }
             else
             {
-             System.out.println("Nope");   
+             JOptionPane.showMessageDialog(null,"Password and Username don't match ya dum dum", null, 1); 
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -218,6 +221,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jButtonCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCancelMouseClicked
        this.dispose();
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelMouseClicked
 
