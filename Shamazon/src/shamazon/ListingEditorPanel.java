@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package shamazon;
+import java.awt.Color;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +13,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+import javax.swing.JPanel;
+import java.awt.Window;
+import java.sql.SQLException;
 
 
 /**
@@ -30,6 +37,11 @@ public class ListingEditorPanel extends javax.swing.JPanel {
      * Listing either passed into the editor or a blank default one.
      */
     private Listing listingToEdit;
+    
+    public boolean creating;
+    /*
+    * Image file path name
+    */
     private String editorImagePath;
     
     /**
@@ -227,37 +239,62 @@ public class ListingEditorPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_DescriptionTextFieldActionPerformed
     
     private void SaveEditorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveEditorButtonActionPerformed
-        listingToEdit.SetName(NameTextField.getText());
-        listingToEdit.SetDescription(DescriptionTextField.getText());
-        listingToEdit.SetPrice(Float.parseFloat(PriceTextField.getText()));
-        listingToEdit.SetTag(TagTextField.getText());
-        
-        if(editorImagePath != null)
+        if(!NameTextField.getText().isEmpty() && !PriceTextField.getText().isEmpty())
         {
-            ImageIcon imgBuff = ImageLoader.ImageFileToBufferedImage(editorImagePath);
-            if (imgBuff != null)
+            listingToEdit.SetName(NameTextField.getText());
+            listingToEdit.SetDescription(DescriptionTextField.getText());
+            listingToEdit.SetPrice(Float.parseFloat(PriceTextField.getText()));
+            listingToEdit.SetTag(TagTextField.getText());
+
+            if(editorImagePath != null)
             {
-                listingToEdit.SetListingImage(imgBuff);
+                ImageIcon imgBuff = ImageLoader.ImageFileToBufferedImage(editorImagePath);
+                if (imgBuff != null)
+                {
+                    listingToEdit.SetListingImage(imgBuff);
+                }
+                else
+                {
+                    listingToEdit.SetListingImage(null);
+                }
             }
             else
             {
                 listingToEdit.SetListingImage(null);
             }
+            //Pass listing to database
+            //Update if already exists
+            try
+            {
+                if(creating)
+                {
+                    DatabaseManager.AddObjectToDatabase(listingToEdit, "Listings");
+                }
+                else
+                {
+                    DatabaseManager.UpdateObjectInDatabase(listingToEdit, "Listings");
+                }
+            }
+            catch(SQLException e)
+            {
+
+            }
+            System.exit(0);
         }
         else
         {
-            listingToEdit.SetListingImage(null);
+            if(NameTextField.getText().isEmpty())
+            {
+                NameTextField.setBackground(Color.red);
+            }
+            if(PriceTextField.getText().isEmpty())
+            {
+                PriceTextField.setBackground(Color.red);
+            }
         }
-        //Pass listing to database
-        //Update if already exists
-        
-        
-        //TEST STATEMENT
-        ///this.LoadListing(this.listingToEdit);
     }//GEN-LAST:event_SaveEditorButtonActionPerformed
 
     private void EditorCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditorCancelButtonActionPerformed
-
         
     }//GEN-LAST:event_EditorCancelButtonActionPerformed
 

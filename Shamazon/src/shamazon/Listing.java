@@ -191,4 +191,13 @@ public class Listing extends ShamazonObject
     {
         return this.listingOwner;
     }
+    
+      /**
+     * Set the owner of the listing 
+     *
+     */
+    public void SetOwner(UserAccount user)
+    {
+        this.listingOwner= user;
+    }
 }

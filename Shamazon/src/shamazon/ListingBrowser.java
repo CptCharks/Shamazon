@@ -17,6 +17,7 @@ import java.sql.SQLException;
 public class ListingBrowser extends javax.swing.JPanel {
 
     
+    private UserAccount userAccount;
     
     /**
      * Creates new form ListingBrowserPanel
@@ -45,6 +46,7 @@ public class ListingBrowser extends javax.swing.JPanel {
         LessThanLabel = new javax.swing.JLabel();
         PriceCheckBox = new javax.swing.JCheckBox();
         CreateButton = new javax.swing.JButton();
+        RefreshListings = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -95,6 +97,15 @@ public class ListingBrowser extends javax.swing.JPanel {
             }
         });
 
+        RefreshListings.setText("Refresh");
+        RefreshListings.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                RefreshListingsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,7 +135,10 @@ public class ListingBrowser extends javax.swing.JPanel {
                                         .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(CreateButton)))
+                                .addComponent(CreateButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(RefreshListings)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ListingScrollPane)))
                 .addGap(10, 10, 10))
@@ -142,7 +156,7 @@ public class ListingBrowser extends javax.swing.JPanel {
                         .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(SearchButton))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(FilterSettingsLabel)
                         .addGap(7, 7, 7)
@@ -155,7 +169,10 @@ public class ListingBrowser extends javax.swing.JPanel {
                                 .addComponent(LessThanLabel))
                             .addComponent(PriceFieldHigher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
-                        .addComponent(CreateButton))
+                        .addComponent(CreateButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RefreshListings)
+                        .addContainerGap())
                     .addComponent(ListingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -174,8 +191,13 @@ public class ListingBrowser extends javax.swing.JPanel {
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CreateButtonActionPerformed
     {//GEN-HEADEREND:event_CreateButtonActionPerformed
-       CreateListing();
+       CreateListing(userAccount);
     }//GEN-LAST:event_CreateButtonActionPerformed
+
+    private void RefreshListingsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_RefreshListingsActionPerformed
+    {//GEN-HEADEREND:event_RefreshListingsActionPerformed
+        LoadListings();
+    }//GEN-LAST:event_RefreshListingsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -186,6 +208,7 @@ public class ListingBrowser extends javax.swing.JPanel {
     private javax.swing.JCheckBox PriceCheckBox;
     private javax.swing.JTextField PriceFieldHigher;
     private javax.swing.JTextField PriceFieldLower;
+    private javax.swing.JButton RefreshListings;
     private javax.swing.JButton SearchButton;
     private javax.swing.JLabel SearchLabel;
     private javax.swing.JTextField SearchTextField;
@@ -199,11 +222,6 @@ public class ListingBrowser extends javax.swing.JPanel {
      * Reference to the shopping cart to add listings to
      */
     private ShoppingCart shopCart;
-    
-    /**
-     * 
-     */
-    
     
     /**
      * Listings to show in the browser.
@@ -220,8 +238,9 @@ public class ListingBrowser extends javax.swing.JPanel {
      * @param cart
      * @param dm 
      */
-    public ListingBrowser(ShoppingCart cart)
+    public ListingBrowser(ShoppingCart cart, UserAccount user)
     {
+        userAccount = user;
         shopCart = cart;
         initComponents();
     }
@@ -229,9 +248,10 @@ public class ListingBrowser extends javax.swing.JPanel {
     /**
      * Run processes for creating a new listing
      */
-    public void CreateListing()
+    public void CreateListing(UserAccount user)
     {
        Listing newListing = new Listing();
+       newListing.SetOwner(user);
        ListingEditorPanel editor = new ListingEditorPanel();
        editor.LoadListing(newListing);
        JFrame editFrame = new JFrame();
@@ -239,6 +259,7 @@ public class ListingBrowser extends javax.swing.JPanel {
        editFrame.getContentPane().add(editor);
        editor.setVisible(true);
        editFrame.setVisible(true);
+       editor.creating = false;
     }
     
     public void EditListing(Listing list)
@@ -251,21 +272,58 @@ public class ListingBrowser extends javax.swing.JPanel {
        editFrame.getContentPane().add(editor);
        editor.setVisible(true);
        editFrame.setVisible(true);
-       
+       editor.creating = false;
     }
     
-    public void LoadListings()
+    /**
+     * Loads listings based on in searchString is empty or not
+     */
+    private void LoadListings()
     {
-        //Get a number of listings from the databasemanager
-        try
+        if(searchString != null)
         {
-            listingsToShow = DatabaseManager.GetObjectsFromDatabase(searchString);
+            //Use search string and call luke's fancy function
+            //Get a number of listings from the databasemanager
+            try
+            {
+                listingsToShow = DatabaseManager.GetObjectsFromDatabase("Listings");
+            }
+            catch(SQLException e)
+            {
+                //throw e;
+            }
         }
-        catch(SQLException e)
+        else
         {
-            //throw e;
+            //Get a number of listings from the databasemanager
+            try
+            {
+                listingsToShow = DatabaseManager.GetObjectsFromDatabase("Listings");
+            }
+            catch(SQLException e)
+            {
+                //throw e;
+            }
+            
         }
+        RefreshListings();
     }
+    
+    private void SearchListings()
+    {
+        searchString = SearchTextField.getText();
+        if(searchString == "")
+        {
+            searchString = null;
+        }
+        this.LoadListings();
+    }
+    
+    public void FilterListings()
+    {
+        
+    }
+        
     
     public void SetShoppingCart(ShoppingCart cart)
     {
@@ -277,7 +335,7 @@ public class ListingBrowser extends javax.swing.JPanel {
      */
     public void RefreshListings()
     {
-        if(listingsToShow.size() != 0)
+        if(!listingsToShow.isEmpty())
         {
             //Clear the pane so to repopulate
             //ListingScrollPane.removeAll();
@@ -286,17 +344,42 @@ public class ListingBrowser extends javax.swing.JPanel {
             //Loop to repopulate the listings
             for(int i = 0; i < listingsToShow.size(); i++)
             {
-                //Create a panel to load
-                ListingPreviewPanel listingPanelToAdd = new ListingPreviewPanel();
+                if(PriceCheckBox.isSelected())
+                {
+                    float compareList = listingsToShow.get(i).GetPrice();
+                    float lowerList = Float.parseFloat(PriceFieldLower.getText());
+                    float higherList = Float.parseFloat(PriceFieldHigher.getText());
+                    if((compareList >= lowerList)&&(compareList <= higherList))
+                    {
+                        //Create a panel to load
+                        ListingPreviewPanel listingPanelToAdd = new ListingPreviewPanel();
 
-                //Loadlisting to panel
-                listingPanelToAdd.LoadListingToPanel(listingsToShow.get(i),this);
-                listingPanelToAdd.SetShoppingCart(shopCart);
-                //Add to container that will be added to pane
-                panelContain.add(listingPanelToAdd);
+                        //Loadlisting to panel
+                        listingPanelToAdd.LoadListingToPanel(listingsToShow.get(i),this);
+                        listingPanelToAdd.SetShoppingCart(shopCart);
+                        //Add to container that will be added to pane
+                        panelContain.add(listingPanelToAdd);
+
+                        //Make sure the panel is visable
+                        listingPanelToAdd.setVisible(true);
+                    }
+                }
+                else
+                {
+                    //Create a panel to load
+                    ListingPreviewPanel listingPanelToAdd = new ListingPreviewPanel();
+
+                    //Loadlisting to panel
+                    listingPanelToAdd.LoadListingToPanel(listingsToShow.get(i),this);
+                    listingPanelToAdd.SetShoppingCart(shopCart);
+                    //Add to container that will be added to pane
+                    panelContain.add(listingPanelToAdd);
+
+                    //Make sure the panel is visable
+                    listingPanelToAdd.setVisible(true);
+                }
                 
-                //Make sure the panel is visable
-                listingPanelToAdd.setVisible(true);
+                
             }
             //Format panel layout
             panelContain.setLayout(new BoxLayout(panelContain, BoxLayout.Y_AXIS));
@@ -320,21 +403,6 @@ public class ListingBrowser extends javax.swing.JPanel {
         }
     }
     
-    public void FilterListings()
-    {
-        
-    }
-    
-    public void SearchListings()
-    {
-        searchString = SearchTextField.getText();
-        if(searchString == "")
-        {
-            searchString = null;
-        }
-        this.LoadListings();
-    }
-        
     public void TestAddToList(Listing list)
     {
         listingsToShow.add(list);

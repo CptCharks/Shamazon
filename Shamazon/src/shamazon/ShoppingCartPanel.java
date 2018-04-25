@@ -92,7 +92,7 @@ public class ShoppingCartPanel extends javax.swing.JPanel
             }
         });
 
-        TotalPriceLabel.setText("Total:");
+        TotalPriceLabel.setText("Total: $0.0");
 
         RefreshButton.setText("Refresh");
         RefreshButton.addActionListener(new java.awt.event.ActionListener()

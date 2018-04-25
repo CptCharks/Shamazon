@@ -23,26 +23,53 @@ public class Shamazon {
     public static void main(String[] args) throws SQLException
     {
         
-//        JFrame mainFrame = new JFrame();
-//        mainFrame.setSize(800, 600);
-//        
-//        JTabbedPane tabPane = new JTabbedPane();
-//        tabPane.setSize(800, 600);
-//       
-//        ShoppingCart theCart = new ShoppingCart();
-//        TransactionManager tranMan = new TransactionManager();  
-//        
-//        ListingBrowser listBrow = new ListingBrowser(theCart);
-//        tabPane.addTab("Browse",listBrow);
-//        listBrow.setVisible(true);
-//        
-//        ShoppingCartPanel shopCartPan = new ShoppingCartPanel(theCart, tranMan);
-//        tabPane.addTab("Checkout",shopCartPan);
-//        shopCartPan.setVisible(true);
-//        
-//        mainFrame.add(tabPane);
-//        mainFrame.setVisible(true);
-//        tabPane.setVisible(true);
+        JDialog dialog = new JDialog();
+        UserAccount newUser = UserAccountManager.CreateNewUserAccount(dialog);
+        
+        if(newUser != null)
+            DatabaseManager.AddObjectToDatabase(newUser, "UserAccounts");
+        
+        try
+        {
+            newUser = (UserAccount)DatabaseManager.GetUpdatedObjectFromDatabase(newUser, "UserAccounts");
+        }
+        catch(SQLException e)
+        {
+            
+        }
+        
+        try
+        {
+            dialog = new JDialog();
+            newUser = UserAccountManager.EditUserAccount(dialog, newUser);
+        }
+        catch(Exception e)
+        {
+            e.toString();
+        }
+
+        
+        
+        JFrame mainFrame = new JFrame();
+        mainFrame.setSize(800, 600);
+        
+        JTabbedPane tabPane = new JTabbedPane();
+        tabPane.setSize(800, 600);
+       
+        ShoppingCart theCart = new ShoppingCart();
+        TransactionManager tranMan = new TransactionManager(newUser);  
+        
+        ListingBrowser listBrow = new ListingBrowser(theCart, newUser);
+        tabPane.addTab("Browse",listBrow);
+        listBrow.setVisible(true);
+        
+        ShoppingCartPanel shopCartPan = new ShoppingCartPanel(theCart, tranMan);
+        tabPane.addTab("Checkout",shopCartPan);
+        shopCartPan.setVisible(false);
+        
+        mainFrame.add(tabPane);
+        mainFrame.setVisible(true);
+        tabPane.setVisible(true);
 //      
 //        Listing list1 = new Listing("Polly Locket",null,"Tis #######",10,null, null);
 //        Listing list2 = new Listing("Bob",null,"Tis Bob",15,null, null);
@@ -81,31 +108,7 @@ public class Shamazon {
 //    }
        
         
-        JDialog dialog = new JDialog();
-        UserAccount newUser = UserAccountManager.CreateNewUserAccount(dialog);
         
-        if(newUser != null)
-            DatabaseManager.AddObjectToDatabase(newUser, "UserAccounts");
-        
-        try
-        {
-            newUser = (UserAccount)DatabaseManager.GetUpdatedObjectFromDatabase(newUser, "UserAccounts");
-        }
-        catch(SQLException e)
-        {
-            
-        }
-        
-        try
-        {
-            dialog = new JDialog();
-            newUser = UserAccountManager.EditUserAccount(dialog, newUser);
-        }
-        catch(Exception e)
-        {
-            e.toString();
-        }
-
     }
     
     
