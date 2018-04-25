@@ -42,17 +42,22 @@ public class DatabaseManager
 
         Connection databaseConnection = null;
         
-        try
+        for(int i = 0; i < 10; i++)
         {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
-            databaseConnection = DriverManager.getConnection(url, username, password);
+            try
+            {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
+                databaseConnection = DriverManager.getConnection(url, username, password);
+            }
+            catch(Exception e)
+            {
+                databaseConnection = null;
+            }
         }
-        catch(Exception e)
-        {
-            
-        }
-        
-        return databaseConnection;
+        if (databaseConnection != null)
+            return databaseConnection;
+        else
+            return null;
     }
     
     /**
@@ -127,7 +132,7 @@ public class DatabaseManager
         }
     }
     
-     public static boolean IsPasswordCorrect(String username, String password) throws SQLException
+    public static boolean IsPasswordCorrect(String username, String password) throws SQLException
     {
         Statement statement = null;
         try
