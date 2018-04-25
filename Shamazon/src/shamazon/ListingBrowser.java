@@ -323,7 +323,7 @@ public class ListingBrowser extends javax.swing.JPanel {
     private void SearchListings()
     {
         searchString = SearchTextField.getText();
-        if(searchString == "")
+        if(SearchTextField.getText().isEmpty())
         {
             searchString = null;
         }

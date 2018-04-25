@@ -47,29 +47,8 @@ public class Shamazon {
         {
             e.toString();
         }
-
         
         
-        JFrame mainFrame = new JFrame();
-        mainFrame.setSize(800, 600);
-        
-        JTabbedPane tabPane = new JTabbedPane();
-        tabPane.setSize(800, 600);
-       
-        ShoppingCart theCart = new ShoppingCart();
-        TransactionManager tranMan = new TransactionManager(newUser);  
-        
-        ListingBrowser listBrow = new ListingBrowser(theCart, newUser);
-        tabPane.addTab("Browse",listBrow);
-        listBrow.setVisible(true);
-        
-        ShoppingCartPanel shopCartPan = new ShoppingCartPanel(theCart, tranMan);
-        tabPane.addTab("Checkout",shopCartPan);
-        shopCartPan.setVisible(false);
-        
-        mainFrame.add(tabPane);
-        mainFrame.setVisible(true);
-        tabPane.setVisible(true);
 //      
 //        Listing list1 = new Listing("Polly Locket",null,"Tis #######",10,null, null);
 //        Listing list2 = new Listing("Bob",null,"Tis Bob",15,null, null);
