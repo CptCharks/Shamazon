@@ -20,11 +20,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ImageLoader 
 {
     /**
-     * ImageFileToBuffImg searches for an image file and converts to buffered image.
+     * ImageFileToBuffImg searches for an image file and converts to ImageIcon.
      * @param imagePath File path to 
-     * @return Returns buffered image or null object if no file found
+     * @return Returns an ImageIcon or null object if no file found
      */
-    public static BufferedImage ImageFileToBufferedImage(String imagePath)
+    public static ImageIcon ImageFileToBufferedImage(String imagePath)
     {
             //Image fanagling goes here
             //listingToEdit.SetListingImage();
@@ -32,7 +32,7 @@ public class ImageLoader
             try
             {
                 BufferedImage imgBuff = ImageIO.read(imageFile);
-                return imgBuff;
+                return new ImageIcon(imgBuff);
             }
             catch(IllegalArgumentException e)
             {
@@ -52,7 +52,7 @@ public class ImageLoader
      * Reads the image selected from a file dialog into a BufferedImage.
      * @return a BufferedImage which displays the selected image file
      */
-    public static BufferedImage LoadImage()
+    public static ImageIcon LoadImage()
     {
          //Create file chooser object
         JFileChooser chooser = new JFileChooser();
@@ -78,7 +78,7 @@ public class ImageLoader
             {
                 //Get bufferedImage from the listing
                 BufferedImage imgBuffPreview = ImageIO.read(imageFile);
-                return imgBuffPreview;
+                return new ImageIcon(imgBuffPreview);
             }
             catch(IllegalArgumentException e)
             {

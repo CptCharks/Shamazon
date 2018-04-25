@@ -15,20 +15,26 @@ public class TransactionManager
 {
     //Database manager is has static functions for this
     
-    List<Listing> listingsToBuy;
+    private List<Listing> listingsToBuy;
     
     public TransactionManager()
     {
         
     }
     
-    public void CheckOut()
+    public void CheckOut(List<Listing> toBuy)
     {
-        
+       listingsToBuy = toBuy;
+       PurchaseListing();
     }
    
     public void PurchaseListing()
     {
+        //Add to the user's purchased list if we're still doing it
         
+        for(int i = 0; i < listingsToBuy.size()-1;i++)
+        {
+            //DatabaseManager.RemoveObjectFromDatabase();
+        }
     }
 }

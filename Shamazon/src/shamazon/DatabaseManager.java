@@ -32,8 +32,14 @@ public class DatabaseManager
     
     public DatabaseManager() { }
     
+    /**
+     * Opens a connection to the Database
+     * 
+     * @return  a connection Object
+     */
     private static Connection OpenConnection()
     {
+
         Connection databaseConnection = null;
         
         try
@@ -49,17 +55,28 @@ public class DatabaseManager
         return databaseConnection;
     }
     
-    public static boolean IsUsernameAvailable(String username) throws SQLException
+    /**
+     * Checks if a new username already exists for another account in the database
+     * 
+     * @param account           account with username to be checked
+     * @param newUsername       new username being checked for availability
+     * @return                  true if username does not already exist in database, false if it does exist
+     * @throws SQLException 
+     */
+    public static boolean IsUsernameAvailable(UserAccount account, String newUsername) throws SQLException
     {
         Statement statement = null;
         try
         {
-            String query = "select * from UserAccounts where Username = " + "'" + username + "'";
+            String query = "select * from UserAccounts where Username = " + "'" + newUsername + "'";
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             
-            if(resultSet.next()) 
-                return false;
+            if(resultSet.next())
+                if(resultSet.getNString("UUID") != account.GetUUID().toString())
+                    return false;
+                else
+                    return true;
             else 
                 return true;
         }
@@ -73,6 +90,14 @@ public class DatabaseManager
         }
     }
 
+    /**
+     * Checks a password to ensure it's the one associated with the users account
+     * 
+     * @param account   The account that is trying to be accessed
+     * @param password  The password the user is trying to login with
+     * @return          True if password matches the password field in account, false otherwise
+     * @throws SQLException 
+     */
     public static boolean IsPasswordCorrect(UserAccount account, String password) throws SQLException
     {
         Statement statement = null;
@@ -82,10 +107,15 @@ public class DatabaseManager
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             
-           if(resultSet.getNString("Password").equals(password))
-               return true;
-           else
-               return false;
+            if(resultSet.next())
+            {
+                if(resultSet.getNString("Password").equals(password))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
         }
         catch(SQLException e)
         {
@@ -97,6 +127,42 @@ public class DatabaseManager
         }
     }
     
+     public static boolean IsPasswordCorrect(String username, String password) throws SQLException
+    {
+        Statement statement = null;
+        try
+        {
+            String query = "select * from UserAccounts where Username = " + "'" + username + "'";
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            if(resultSet.next())
+            {
+                if(resultSet.getNString("Password").equals(password))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+        catch(SQLException e)
+        {
+            throw e;
+        }
+        finally
+        {
+            statement.close();
+        }
+    }
+    
+    /**
+     * Checks if an object exists in the database
+     * @param object        Object that is being looked for
+     * @param tableName     Table that the object is expected to exist in
+     * @return              True if object exists in given table, false otherwise
+     * @throws SQLException 
+     */
     public static boolean IsObjectInDatabase(ShamazonObject object, String tableName) throws SQLException
     {
         Statement statement = null;
@@ -120,7 +186,13 @@ public class DatabaseManager
             if(statement != null) statement.close();
         }
     }
-        
+    
+       /**
+        * Adds an object to the specified database table
+        * @param object         object to be added, (User account, product listing)
+        * @param tableName      database table to be added
+        * @throws SQLException 
+        */
     public static void AddObjectToDatabase(ShamazonObject object, String tableName) throws SQLException
     {
         Statement statement = null;
@@ -128,7 +200,8 @@ public class DatabaseManager
         {
             byte[] byteArray = null;
 
-            byteArray = DatabaseObjectConverter.GetByteArray(object);
+            if(object instanceof UserAccount)
+                byteArray = DatabaseObjectConverter.GetByteArray((UserAccount)object);
 
             String query = "select * from " + tableName;
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -166,6 +239,12 @@ public class DatabaseManager
         }
     }
     
+    /**
+     * Updates data stored in an existing object on the database
+     * @param object        object to be updated
+     * @param tableName     the table the object is stored in
+     * @throws SQLException 
+     */
     public static void UpdateObjectInDatabase(ShamazonObject object, String tableName) throws SQLException
     {
         Statement statement = null;
@@ -206,6 +285,14 @@ public class DatabaseManager
         }
     }
     
+    /**
+     * retrieves the most recent version of an object from the database
+     * 
+     * @param object        recently updated object
+     * @param tableName     database table the object exists in
+     * @return              latest version of the object
+     * @throws SQLException 
+     */
     public static ShamazonObject GetUpdatedObjectFromDatabase(ShamazonObject object, String tableName) throws SQLException
     {
         ShamazonObject updatedObject;
@@ -216,11 +303,16 @@ public class DatabaseManager
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
-
-            byte[] byteArray = resultSet.getBytes("Object");
+            
+            byte[] byteArray = null;
+            if(resultSet.next())
+               byteArray = resultSet.getBytes("Object");
+            
             resultSet.beforeFirst();
-
-            updatedObject = DatabaseObjectConverter.GetObject(byteArray);
+            if(byteArray != null)
+                updatedObject = DatabaseObjectConverter.GetObject(byteArray);
+            else
+                return null;
         }
         catch(SQLException e)
         {
@@ -234,6 +326,13 @@ public class DatabaseManager
         return updatedObject;
     }
     
+    /**
+     * retrieves all objects stored in a database table
+     * @param <T>           the object array type that will be returned
+     * @param tableName     the database table you want to access
+     * @return              an array of the objects type containing all objects in the table
+     * @throws SQLException 
+     */
     public static <T> ArrayList<T> GetObjectsFromDatabase(String tableName) throws SQLException
     {
         ArrayList<T> objectList = new ArrayList<T>();
@@ -264,6 +363,12 @@ public class DatabaseManager
         return objectList;
     }
     
+    /**
+     * Removes an object from the database
+     * @param object        object to be removed
+     * @param tableName     database table it exists in
+     * @throws SQLException 
+     */
     public static void RemoveObjectFromDatabase(ShamazonObject object, String tableName) throws SQLException
     {
         Statement statement = null;
@@ -287,6 +392,12 @@ public class DatabaseManager
         }
     }
     
+    /**
+     * retrieves the listings a user has submitted
+     * @param owner     the object associated with the users account
+     * @return          an array of type Listing containing the products the user submitted
+     * @throws SQLException 
+     */
     public static ArrayList<Listing> GetListingsFromDatabaseByOwner(UserAccount owner) throws SQLException
     {
         Statement statement = null;

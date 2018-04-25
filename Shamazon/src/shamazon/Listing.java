@@ -7,6 +7,7 @@ package shamazon;
 import java.util.*;
 import java.lang.String;
 import java.awt.image.*;
+import javax.swing.ImageIcon;
 /**
  * Listing: Contains item name, description, tag, image, price, availability
  * Does not edit itself. Relies on the listingBrowser to display information and
@@ -31,7 +32,7 @@ public class Listing extends ShamazonObject
     private String listingTag;
     
     //Image imageFile
-    private BufferedImage listingImage;
+    private ImageIcon listingImage;
     
     /**
      * The listing's price
@@ -53,7 +54,7 @@ public class Listing extends ShamazonObject
     /**
      * Default constructor
      */
-    public Listing(String name, UserAccount owner, String desc, float price, String tag, BufferedImage img)
+    public Listing(String name, UserAccount owner, String desc, float price, String tag, ImageIcon img)
     {
         listingName = name;
         listingOwner = owner;
@@ -106,7 +107,7 @@ public class Listing extends ShamazonObject
      * Sets the image of the listing.
      * @param img The image to change the listing to.
      */
-    public void SetListingImage(BufferedImage img)
+    public void SetListingImage(ImageIcon img)
     {
         listingImage = img;
     }
@@ -154,10 +155,10 @@ public class Listing extends ShamazonObject
      * Gets the image of the listing.
      * @return Returns a copy of the listing's image;
      */
-    public BufferedImage GetListingImage()
+    public ImageIcon GetListingImage()
     {
         //Doesn't like passing a new image
-        BufferedImage cpImg = this.listingImage;
+        ImageIcon cpImg = this.listingImage;
         return cpImg;
     }
     

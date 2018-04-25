@@ -25,6 +25,11 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
     private ShoppingCart shopCart;
     
     /**
+     * Reference to the listingBrowser
+     */
+    private ListingBrowser listBrowser;
+    
+    /**
      * Creates new form ListngPreviewPanel
      */
     public ListingPreviewPanel() {
@@ -38,7 +43,8 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         ListingNameLabel = new javax.swing.JLabel();
         ListingImageLabel = new javax.swing.JLabel();
@@ -58,8 +64,10 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         ListingPriceLabel.setText("Price: ");
 
         AddToCartButton.setText("Add to cart");
-        AddToCartButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        AddToCartButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 AddToCartButtonActionPerformed(evt);
             }
         });
@@ -112,12 +120,16 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
     }
     
     private void AddToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToCartButtonActionPerformed
+        //Check if the user is the owner of this listing
+        
         shopCart.AddListing(listingPreview);
+        
     }//GEN-LAST:event_AddToCartButtonActionPerformed
     
-    public void LoadListingToPanel(Listing list)
+    public void LoadListingToPanel(Listing list, ListingBrowser listBrow)
     {
         listingPreview = list;
+        listBrowser = listBrow;
         
         //Set name, description and price for each of the listing properties
         ListingNameLabel.setText(list.GetName());
@@ -127,10 +139,10 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         if(list.GetListingImage() != null)
         {
             //Get bufferedImage from the listing
-            BufferedImage listImage = list.GetListingImage();
+            ImageIcon listImage = list.GetListingImage();
             
             //Create a previewIcon from a scaled instance of listImage
-            ImageIcon previewIcon = new ImageIcon(listImage.getScaledInstance(ListingImageLabel.getWidth(),ListingImageLabel.getHeight(),0));
+            ImageIcon previewIcon = new ImageIcon(listImage.getImage().getScaledInstance(ListingImageLabel.getWidth(),ListingImageLabel.getHeight(),0));
             
             //Set label to previewIcon.
             ListingImageLabel.setIcon(previewIcon);

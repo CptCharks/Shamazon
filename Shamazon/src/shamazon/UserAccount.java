@@ -6,7 +6,14 @@
 package shamazon;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,9 +28,19 @@ public class UserAccount extends ShamazonObject
     private String username;
     private String password;
     private String creditCardNumber;
-    private BufferedImage avatar;
+    private ImageIcon avatar;
+    private ArrayList<Listing> postedListings;
+    private ArrayList<Listing> purchasedListings;
     // private Mailbox mailbox;
     // COLLECTION OF LISTINGS
+    
+    /**
+     * Creates a new UserAccount with default field values
+     */
+    public UserAccount()
+    {
+        
+    }
     
    /**
     * Creates a new UserAccount object
@@ -35,7 +52,7 @@ public class UserAccount extends ShamazonObject
     * @param password The password used to login to the account
     * @param avatar An image which appears on the user's profile page
     */
-    public UserAccount(String username, String password, String name, String address, String email, String creditCardNumber, BufferedImage avatar)
+    public UserAccount(String username, String password, String name, String address, String email, String creditCardNumber, ImageIcon avatar)
     {
         this.name = name;
         this.email = email;
@@ -44,7 +61,6 @@ public class UserAccount extends ShamazonObject
         this.password = password;
         this.creditCardNumber = creditCardNumber;
         this.avatar = avatar;
-        
         // Credit card info
         // this.mailbox = new Mailbox()
     }
@@ -125,7 +141,7 @@ public class UserAccount extends ShamazonObject
      * 
      * @return the user's avatar
      */
-    public BufferedImage GetAvatar()
+    public ImageIcon GetAvatar()
     {
         return avatar;
     }
@@ -134,7 +150,7 @@ public class UserAccount extends ShamazonObject
     * 
     * @param avatar the avatar to be set
     */
-    public void SetAvatar(BufferedImage avatar)
+    public void SetAvatar(ImageIcon avatar)
     {
        this.avatar = avatar;
     }
@@ -174,5 +190,40 @@ public class UserAccount extends ShamazonObject
     {
         this.address = address;
     }
-        
+    
+    /**
+     * Adds a posted listing
+     * @param listing the listing to be posted
+     */
+    public void AddPostedListing(Listing listing)
+    {
+        postedListings.add(listing);
+    }
+    
+    /**
+     * Removes a posted listing
+     * @param listing the listing to be removed
+     */
+    public void RemovePostedListing(Listing listing)
+    {
+        postedListings.remove(listing);
+    }
+    
+    /**
+     * Adds a purchased listing
+     * @param listing the listing which was purchased
+     */
+    public void AddPurchasedListing(Listing listing)
+    {
+        purchasedListings.add(listing);
+    }
+    
+    /**
+     * Removes a purchased listing
+     * @param listing the listing which was returned
+     */
+    public void RemovePurchasedListing(Listing listing)
+    {
+        purchasedListings.remove(listing);
+    }
 }
