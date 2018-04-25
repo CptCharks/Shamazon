@@ -62,6 +62,8 @@ public class UserAccountEditor extends javax.swing.JPanel
                 
                 try
                 {
+                    if(text == "") return false;
+                    
                     if(DatabaseManager.IsUsernameAvailable(userAccount, usernameTextField.getText()))
                         return true;
                     else
@@ -73,6 +75,11 @@ public class UserAccountEditor extends javax.swing.JPanel
                 }
             }
         });
+        
+        passwordTextField.setInputVerifier(new EmptyTextValidator(passwordTextField));
+        nameTextField.setInputVerifier(new EmptyTextValidator(nameTextField));
+        addressTextField.setInputVerifier(new EmptyTextValidator(addressTextField));
+        emailTextField.setInputVerifier(new EmptyTextValidator(emailTextField));
     }
 
     /**
@@ -101,6 +108,20 @@ public class UserAccountEditor extends javax.swing.JPanel
         jLabel3 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         loadAvatarButton = new javax.swing.JButton();
+
+        addAncestorListener(new javax.swing.event.AncestorListener()
+        {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt)
+            {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt)
+            {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt)
+            {
+                formAncestorRemoved(evt);
+            }
+        });
 
         jLabel4.setText("Name");
 
@@ -246,15 +267,21 @@ public class UserAccountEditor extends javax.swing.JPanel
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_cancelButtonMouseClicked
     {//GEN-HEADEREND:event_cancelButtonMouseClicked
-        this.userAccount = null;
         parentDialog.dispose();
     }//GEN-LAST:event_cancelButtonMouseClicked
 
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_saveButtonMouseClicked
     {//GEN-HEADEREND:event_saveButtonMouseClicked
+        if(!saveButton.hasFocus()) return;
+        
         SaveUserAccount();
         parentDialog.dispose();
     }//GEN-LAST:event_saveButtonMouseClicked
+
+    private void formAncestorRemoved(javax.swing.event.AncestorEvent evt)//GEN-FIRST:event_formAncestorRemoved
+    {//GEN-HEADEREND:event_formAncestorRemoved
+       this.userAccount = null;
+    }//GEN-LAST:event_formAncestorRemoved
 
     private void LoadAvatar(ImageIcon avatar)
     {
