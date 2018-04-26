@@ -207,6 +207,15 @@ public class UserAccount extends ShamazonObject
     }
     
     /**
+     * 
+     * @return the list of the user's posted listings
+     */
+    public ArrayList<Listing> GetPostedListings()
+    {
+        return postedListings;
+    }
+    
+    /**
      * Adds a purchased listing
      * @param listing the listing which was purchased
      */
@@ -222,6 +231,15 @@ public class UserAccount extends ShamazonObject
     public void RemovePurchasedListing(Listing listing)
     {
         purchasedListings.remove(listing);
+    }
+    
+    /**
+     * 
+     * @return the list of the user's purchased listings
+     */
+    public ArrayList<Listing> GetPurchasedListings()
+    {
+        return purchasedListings;
     }
     
     /**
