@@ -61,6 +61,22 @@ public class DatabaseManager
     }
     
     /**
+     *  Close the database connection
+     */
+    public static void CloseConnection()
+    {
+        try
+        {
+            if(connection != null)
+                connection.close();
+        }
+        catch(SQLException e)
+        {
+            
+        }
+    }
+    
+    /**
      * Checks if a new username already exists for another account in the database
      * 
      * @param account           account with username to be checked
