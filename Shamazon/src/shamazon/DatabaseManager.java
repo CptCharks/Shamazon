@@ -276,24 +276,27 @@ public class DatabaseManager
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
-
-            resultSet.updateBytes("Object", byteArray);
-
-            if(object instanceof UserAccount)
+            
+            if(resultSet.next())
             {
-                UserAccount account = (UserAccount)object;
-                resultSet.updateNString("Username", account.GetUsername());
-                resultSet.updateNString("Password", account.GetPassword());
-            }
-            else if(object instanceof Listing)
-            {
-                Listing listing = (Listing)object;
-                resultSet.updateNString("Name", listing.GetName());
-                resultSet.updateNString("Owner", listing.GetOwner().GetUUID().toString());
-            }
+                resultSet.updateBytes("Object", byteArray);
 
-            resultSet.updateRow();
-            resultSet.beforeFirst();
+                if(object instanceof UserAccount)
+                {
+                    UserAccount account = (UserAccount)object;
+                    resultSet.updateNString("Username", account.GetUsername());
+                    resultSet.updateNString("Password", account.GetPassword());
+                }
+                else if(object instanceof Listing)
+                {
+                    Listing listing = (Listing)object;
+                    resultSet.updateNString("Name", listing.GetName());
+                    resultSet.updateNString("Owner", listing.GetOwner().GetUUID().toString());
+                }
+
+                resultSet.updateRow();
+                resultSet.beforeFirst();
+            }
         }
         catch(SQLException e)
         {
