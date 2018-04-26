@@ -333,6 +333,14 @@ public class ListingBrowser extends javax.swing.JPanel {
     }
     
     /**
+     * Called on the start of the application
+     */
+    public void OnStart()
+    {
+        LoadListings();
+    }
+    
+    /**
      * Refreshes listings in the scroll pane. Use to repopulate the list after
      * loading new listings.
      */
