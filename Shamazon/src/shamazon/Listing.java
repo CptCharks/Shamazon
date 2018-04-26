@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  * Listing: Contains item name, description, tag, image, price, availability
  * Does not edit itself. Relies on the listingBrowser to display information and
  * an editor to modify itself.
- * @author Charles The Well-Endowed
+ * @author Charles
  */
 public class Listing extends ShamazonObject
 {
