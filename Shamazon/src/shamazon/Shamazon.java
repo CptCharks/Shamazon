@@ -12,7 +12,7 @@ import java.util.UUID;
 import javax.swing.*;
 
 /**
- *
+ * The main class that gets this mad train rolling.
  * @author Seth
  */
 public class Shamazon {

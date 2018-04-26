@@ -146,6 +146,10 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         EditListing(listingPreview);
     }//GEN-LAST:event_EditButtonActionPerformed
     
+    /**
+     * Used to call the editor when editing listings. I honestly do not know when we call it from this class/form.
+     * @param list 
+     */
     public void EditListing(Listing list)
     {
        //Edit a given listing provided it is owned by the user and not sold
@@ -155,12 +159,20 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
        editor.creating = false;
     }
     
+    /**
+     * Loads the edit button on a previewPanel and removes the add to cart button.
+     */
     public void LoadEdit()
     {
         EditButton.setVisible(true);
         AddToCartButton.setVisible(false);
     }
     
+    /**
+     * Loads the listing to the panel labels.
+     * @param list
+     * @param listBrow 
+     */
     public void LoadListingToPanel(Listing list, ListingBrowser listBrow)
     {
         EditButton.setVisible(false);

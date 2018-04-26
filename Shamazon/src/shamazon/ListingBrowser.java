@@ -302,6 +302,9 @@ public class ListingBrowser extends javax.swing.JPanel {
         RefreshListings();
     }
     
+    /**
+     * Sets the searchString and calls loadListings().
+     */
     private void SearchListings()
     {
         searchString = SearchTextField.getText();
@@ -312,12 +315,18 @@ public class ListingBrowser extends javax.swing.JPanel {
         this.LoadListings();
     }
     
-    public void FilterListings()
+    /**
+     * Was a way to compact our code but a git push didn't update it properly.
+     */
+    private void FilterListings()
     {
         
     }
         
-    
+    /**
+     * Function to manually set the shopping cart for the listingBrowser for testing purposes.
+     * @param cart 
+     */
     public void SetShoppingCart(ShoppingCart cart)
     {
         shopCart = cart;
@@ -397,6 +406,10 @@ public class ListingBrowser extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * Test function to add listings to the listingBrowser
+     * @param list 
+     */
     public void TestAddToList(Listing list)
     {
         listingsToShow.add(list);

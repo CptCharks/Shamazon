@@ -23,22 +23,33 @@ public class TransactionManager
     
     private List<Listing> listingsToBuy;
     
+    /**
+     * Constructor for TransactionManager
+     * @param user The user that this is for.
+     */
     public TransactionManager(UserAccount user)
     {
         userAccount = user;
     }
     
+    /**
+     * Sets the list of listings to the shopping cart for PurchaseListing() and calls it.
+     * @param toBuy 
+     */
     public void CheckOut(List<Listing> toBuy)
     {
        listingsToBuy = toBuy;
        PurchaseListing();
     }
    
+    /**
+     * Adds the listing to the user's purchased account, removes from main database, and removes from owner's account
+     */
     private void PurchaseListing()
     {
         //Add to the user's purchased list if we're still doing it
         
-        for(int i = 0; i < listingsToBuy.size()-1;i++)
+        for(int i = 0; i < listingsToBuy.size();i++)
         {
             try
             {
