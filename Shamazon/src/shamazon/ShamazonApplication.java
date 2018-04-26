@@ -38,6 +38,16 @@ public class ShamazonApplication extends javax.swing.JFrame
         tabPane.addTab("Checkout",shopCartPan);
         shopCartPan.setVisible(false);
         
+        Mailbox mailbox = new Mailbox(user);
+        
+        //MailboxForm mailboxPanel = new MailboxForm();
+        //tabPane.addTab("Mail",mailboxPanel);
+        //mailboxPanel.setVisible(false);
+        
+        UserAccountViewer userAccount = new UserAccountViewer(user);
+        tabPane.addTab("User",userAccount);
+        userAccount.setVisible(false);
+        
         mainFrame.add(tabPane);
         mainFrame.setVisible(true);
         tabPane.setVisible(true);
