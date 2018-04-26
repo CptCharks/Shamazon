@@ -32,7 +32,7 @@ public class UserListingDialog extends javax.swing.JDialog
     
     private void LoadListings()
     {
-        //listingsToShow = user.GetListings();
+        listingsToShow = user.GetPostedListings();
         RefreshListings();
     }
     

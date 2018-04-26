@@ -255,10 +255,9 @@ public class ListingBrowser extends javax.swing.JPanel {
        {
             Listing newListing = new Listing();
             newListing.SetOwner(user);
-            EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true);
+            EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true, true);
             editor.LoadListing(newListing);
             editor.setVisible(true);
-            editor.creating = true;
        }
        else
        {
