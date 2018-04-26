@@ -68,8 +68,8 @@ public class UserAccountEditor extends javax.swing.JPanel
                         return true;
                     else
                         return false;
-                }                catch(SQLException e)
-
+                }                
+                catch(SQLException e)
                 {
                     return false;
                 }
