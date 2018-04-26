@@ -92,7 +92,7 @@ public class LoginFrame extends javax.swing.JFrame
             }
         });
 
-        jLabel1.setText("UserName");
+        jLabel1.setText("Username");
 
         jLabel2.setText("Password");
 
@@ -135,7 +135,7 @@ public class LoginFrame extends javax.swing.JFrame
                 .addComponent(jLabel2)
                 .addGap(8, 8, 8)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLogin)
                     .addComponent(jButtonCancel)
