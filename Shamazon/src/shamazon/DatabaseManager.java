@@ -94,7 +94,7 @@ public class DatabaseManager
             ResultSet resultSet = statement.executeQuery(query);
             
             if(resultSet.next())
-                if(resultSet.getNString("UUID") != account.GetUUID().toString())
+                if(!resultSet.getNString("UUID").equals(account.GetUUID().toString()))
                     return false;
                 else
                     return true;
