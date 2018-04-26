@@ -286,7 +286,7 @@ public class UserAccountEditor extends javax.swing.JPanel
 
     private void LoadAvatar(ImageIcon avatar)
     {
-        avatar = new ImageIcon(avatar.getImage().getScaledInstance(avatarLabel.getWidth(), avatarLabel.getHeight(), 0));
+        avatar = new ImageIcon(avatar.getImage().getScaledInstance(avatarLabel.getPreferredSize().width, avatarLabel.getPreferredSize().height, 0));
        
         avatarLabel.setIcon(avatar);
     }

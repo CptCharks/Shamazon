@@ -56,7 +56,10 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
 
         ListingNameLabel.setText("ListingName");
 
-        ListingImageLabel.setText("ListingImage");
+        ListingImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
+        ListingImageLabel.setMaximumSize(new java.awt.Dimension(150, 150));
+        ListingImageLabel.setMinimumSize(new java.awt.Dimension(150, 150));
+        ListingImageLabel.setPreferredSize(new java.awt.Dimension(150, 150));
 
         ListingDescLabel.setText("ListingDescription");
         ListingDescLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -78,7 +81,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ListingImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ListingImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ListingDescLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -89,7 +92,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
                                 .addComponent(AddToCartButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ListingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 13, Short.MAX_VALUE)))
+                        .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -97,7 +100,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ListingImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ListingImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ListingNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,7 +145,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
             ImageIcon listImage = list.GetListingImage();
             
             //Create a previewIcon from a scaled instance of listImage
-            ImageIcon previewIcon = new ImageIcon(listImage.getImage().getScaledInstance(ListingImageLabel.getWidth(),ListingImageLabel.getHeight(),0));
+            ImageIcon previewIcon = new ImageIcon(listImage.getImage().getScaledInstance(ListingImageLabel.getPreferredSize().width,ListingImageLabel.getPreferredSize().height,0));
             
             //Set label to previewIcon.
             ListingImageLabel.setIcon(previewIcon);

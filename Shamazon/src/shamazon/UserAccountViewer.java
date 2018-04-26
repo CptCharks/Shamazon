@@ -152,6 +152,6 @@ public class UserAccountViewer extends javax.swing.JPanel
         addressLabel.setText(account.GetAddress());
         emailLabel.setText(account.GetEmail());
         creditCardLabel.setText(account.GetCreditCardNumber());
-        avatarLabel.setIcon(new ImageIcon(account.GetAvatar().getImage().getScaledInstance(avatarLabel.getWidth(), avatarLabel.getHeight(), 0)));
+        avatarLabel.setIcon(new ImageIcon(account.GetAvatar().getImage().getScaledInstance(avatarLabel.getPreferredSize().width, avatarLabel.getPreferredSize().height, 0)));
     }
 }
