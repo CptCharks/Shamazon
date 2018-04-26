@@ -27,19 +27,12 @@ public class UserListingDialog extends javax.swing.JDialog
         super(parent, modal);
         initComponents();
         user = userAcc;
+        
     }
     
     private void LoadListings()
     {
-        //Get a number of listings from the databasemanager
-        try
-        {
-            listingsToShow = DatabaseManager.GetObjectsFromDatabase("Listings");
-        }
-        catch(SQLException e)
-        {
-            //throw e;
-        }
+        //listingsToShow = user.GetListings();
         RefreshListings();
     }
     
@@ -58,8 +51,6 @@ public class UserListingDialog extends javax.swing.JDialog
             //Loop to repopulate the listings
             for(int i = 0; i < listingsToShow.size(); i++)
             {
-                if(listingsToShow.get(i).GetOwner() == user)
-                {
                     //Create a panel to load
                     ListingPreviewPanel listingPanelToAdd = new ListingPreviewPanel();
 
@@ -72,7 +63,6 @@ public class UserListingDialog extends javax.swing.JDialog
 
                     //Make sure the panel is visable
                     listingPanelToAdd.setVisible(true);
-                }
             }
             //Format panel layout
             panelContain.setLayout(new BoxLayout(panelContain, BoxLayout.Y_AXIS));
