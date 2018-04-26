@@ -281,6 +281,7 @@ public class EditorDialog extends javax.swing.JDialog
                     if(userRef != null)
                     {
                         userRef.AddPostedListing(listingToEdit);
+                        DatabaseManager.UpdateObjectInDatabase(userRef, "UserAccounts");
                     }
                 }
                 else

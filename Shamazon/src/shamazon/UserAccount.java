@@ -29,8 +29,8 @@ public class UserAccount extends ShamazonObject
     private String password;
     private String creditCardNumber;
     private ImageIcon avatar;
-    private ArrayList<Listing> postedListings;
-    private ArrayList<Listing> purchasedListings;
+    private ArrayList<Listing> postedListings = new ArrayList<Listing>();
+    private ArrayList<Listing> purchasedListings = new ArrayList<Listing>();
     private Mailbox mailbox;
     
     /**

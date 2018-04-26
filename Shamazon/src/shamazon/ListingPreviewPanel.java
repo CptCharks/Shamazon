@@ -6,6 +6,7 @@
 package shamazon;
 
 import java.awt.image.BufferedImage;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 
 /**
@@ -52,6 +53,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         ListingPriceLabel = new javax.swing.JLabel();
         AddToCartButton = new javax.swing.JButton();
         EditButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -85,6 +87,15 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
             }
         });
 
+        deleteButton.setText("Delete");
+        deleteButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                deleteButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,6 +114,8 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ListingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(EditButton)))
                 .addContainerGap())
         );
@@ -120,7 +133,8 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddToCartButton)
                             .addComponent(ListingPriceLabel)
-                            .addComponent(EditButton))))
+                            .addComponent(EditButton)
+                            .addComponent(deleteButton))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +159,34 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
     {//GEN-HEADEREND:event_EditButtonActionPerformed
         EditListing(listingPreview);
     }//GEN-LAST:event_EditButtonActionPerformed
+
+    private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_deleteButtonMouseClicked
+    {//GEN-HEADEREND:event_deleteButtonMouseClicked
+        UserAccount owner = listingPreview.GetOwner();
+        owner.RemovePostedListing(listingPreview);
+        
+        try
+        {
+            DatabaseManager.RemoveObjectFromDatabase(listingPreview, "Listings");
+            DatabaseManager.UpdateObjectInDatabase(owner, "UserAccounts");
+        }
+        catch(SQLException e)
+        {
+           
+        }
+        
+        // get the UserListingDialog
+        try
+        {
+            UserListingDialog listingDialog = (UserListingDialog)this.getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+            listingDialog.RemoveListing(listingPreview);
+            listingDialog.RefreshListings();
+        }
+        catch(Exception e)
+        {
+            
+        }
+    }//GEN-LAST:event_deleteButtonMouseClicked
     
     public void EditListing(Listing list)
     {
@@ -153,6 +195,16 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
        editor.LoadListing(list);
        editor.setVisible(true);
        editor.creating = false;
+       
+       try
+       {
+           DatabaseManager.UpdateObjectInDatabase(list.GetOwner(), "Listings");
+           LoadListingToPanel((Listing)DatabaseManager.GetUpdatedObjectFromDatabase(list, "Listings"), listBrowser);
+       }
+       catch(SQLException e)
+       {
+           
+       }
     }
     
     public void LoadEdit()
@@ -183,10 +235,6 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
             //Set label to previewIcon.
             ListingImageLabel.setIcon(previewIcon);
         }
-        else
-        {   
-            ListingImageLabel.setText("Image Missing");
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -196,5 +244,6 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel ListingImageLabel;
     private javax.swing.JLabel ListingNameLabel;
     private javax.swing.JLabel ListingPriceLabel;
+    private javax.swing.JButton deleteButton;
     // End of variables declaration//GEN-END:variables
 }

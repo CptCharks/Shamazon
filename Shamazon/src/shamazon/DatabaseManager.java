@@ -402,8 +402,11 @@ public class DatabaseManager
 
             ResultSet resultSet = statement.executeQuery(query);
 
-            resultSet.deleteRow();
-            resultSet.beforeFirst();
+            if(resultSet.next())
+            {
+                resultSet.deleteRow();
+                resultSet.beforeFirst();
+            }
         }
         catch(SQLException e)
         {
@@ -467,7 +470,7 @@ public class DatabaseManager
         ArrayList<Listing> listings = new ArrayList<Listing>();
         try
         {
-            String query = "select * from Listings where Name = " + "'" + name + "'";
+            String query = "select * from Listings where Name like " + "'%" + name + "%'";
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);
@@ -507,7 +510,7 @@ public class DatabaseManager
         ArrayList<Listing> listings = new ArrayList<Listing>();
         try
         {
-            String query = "select * from Listings where Name = " + "'" + tag + "'";
+            String query = "select * from Listings where Tag like " + "'%" + tag + "%'";
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             ResultSet resultSet = statement.executeQuery(query);

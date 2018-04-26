@@ -164,12 +164,13 @@ public class UserAccountViewer extends javax.swing.JPanel
 
     private void purchasedListingsButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_purchasedListingsButtonMouseClicked
     {//GEN-HEADEREND:event_purchasedListingsButtonMouseClicked
-        // TODO add your handling code here:
+        UserListingDialog usListDiag = new UserListingDialog(new javax.swing.JFrame(),true,this.account, this.account.GetPurchasedListings());
+        usListDiag.setVisible(true);
     }//GEN-LAST:event_purchasedListingsButtonMouseClicked
 
     private void postedListingsButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_postedListingsButtonMouseClicked
     {//GEN-HEADEREND:event_postedListingsButtonMouseClicked
-        UserListingDialog usListDiag = new UserListingDialog(new javax.swing.JFrame(),true,this.account);
+        UserListingDialog usListDiag = new UserListingDialog(new javax.swing.JFrame(),true,this.account, this.account.GetPostedListings());
         usListDiag.setVisible(true);
     }//GEN-LAST:event_postedListingsButtonMouseClicked
 

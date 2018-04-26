@@ -279,7 +279,16 @@ public class ListingBrowser extends javax.swing.JPanel {
             //Get a number of listings from the databasemanager
             try
             {
-                listingsToShow = DatabaseManager.GetObjectsFromDatabase("Listings");
+                ArrayList<Listing> searchByName = DatabaseManager.GetListingsByName(searchString);
+                ArrayList<Listing> searchByTag = DatabaseManager.GetListingsByTag(searchString);
+                
+                if(searchByName != null || searchByTag != null)
+                {
+                    listingsToShow.clear();
+                    
+                    listingsToShow.addAll(searchByName);
+                    listingsToShow.addAll(searchByTag);
+                }
             }
             catch(SQLException e)
             {

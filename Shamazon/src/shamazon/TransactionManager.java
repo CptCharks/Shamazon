@@ -38,13 +38,17 @@ public class TransactionManager
     {
         //Add to the user's purchased list if we're still doing it
         
-        for(int i = 0; i < listingsToBuy.size()-1;i++)
+        for(int i = 0; i < listingsToBuy.size(); i++)
         {
             try
             {
                 userAccount.AddPurchasedListing(listingsToBuy.get(i));
+                UserAccount listingOwner = (UserAccount)DatabaseManager.GetUpdatedObjectFromDatabase(listingsToBuy.get(i).GetOwner(), "UserAccounts");
+                listingOwner.RemovePostedListing(listingsToBuy.get(i));
+                
+                DatabaseManager.UpdateObjectInDatabase(userAccount, "UserAccounts");
+                DatabaseManager.UpdateObjectInDatabase(listingOwner, "UserAccounts");
                 DatabaseManager.RemoveObjectFromDatabase(listingsToBuy.get(i),"Listings");
-                listingsToBuy.get(i).GetOwner().RemovePostedListing(listingsToBuy.get(i));
             }
             catch(SQLException e)
             {
