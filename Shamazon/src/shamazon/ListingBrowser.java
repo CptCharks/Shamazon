@@ -269,15 +269,6 @@ public class ListingBrowser extends javax.swing.JPanel {
        }
     }
     
-    public void EditListing(Listing list)
-    {
-       //Edit a given listing provided it is owned by the user and not sold
-       EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true);
-       editor.LoadListing(list);
-       editor.setVisible(true);
-       editor.creating = false;
-    }
-    
     /**
      * Loads listings based on in searchString is empty or not
      */

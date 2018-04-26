@@ -51,6 +51,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         ListingDescLabel = new javax.swing.JLabel();
         ListingPriceLabel = new javax.swing.JLabel();
         AddToCartButton = new javax.swing.JButton();
+        EditButton = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -75,6 +76,15 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
             }
         });
 
+        EditButton.setText("Edit");
+        EditButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                EditButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,13 +96,14 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ListingDescLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ListingNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(AddToCartButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ListingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 10, Short.MAX_VALUE)))
+                        .addComponent(ListingNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(AddToCartButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ListingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(EditButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -108,7 +119,8 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddToCartButton)
-                            .addComponent(ListingPriceLabel))))
+                            .addComponent(ListingPriceLabel)
+                            .addComponent(EditButton))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -128,9 +140,30 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
         shopCart.AddListing(listingPreview);
         
     }//GEN-LAST:event_AddToCartButtonActionPerformed
+
+    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_EditButtonActionPerformed
+    {//GEN-HEADEREND:event_EditButtonActionPerformed
+        EditListing(listingPreview);
+    }//GEN-LAST:event_EditButtonActionPerformed
+    
+    public void EditListing(Listing list)
+    {
+       //Edit a given listing provided it is owned by the user and not sold
+       EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true);
+       editor.LoadListing(list);
+       editor.setVisible(true);
+       editor.creating = false;
+    }
+    
+    public void LoadEdit()
+    {
+        EditButton.setVisible(true);
+        AddToCartButton.setVisible(false);
+    }
     
     public void LoadListingToPanel(Listing list, ListingBrowser listBrow)
     {
+        EditButton.setVisible(false);
         listingPreview = list;
         listBrowser = listBrow;
         
@@ -158,6 +191,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToCartButton;
+    private javax.swing.JButton EditButton;
     private javax.swing.JLabel ListingDescLabel;
     private javax.swing.JLabel ListingImageLabel;
     private javax.swing.JLabel ListingNameLabel;
