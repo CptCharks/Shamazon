@@ -41,10 +41,11 @@ public class EditorDialog extends javax.swing.JDialog
     /**
      * Creates new form EditorDialog
      */
-    public EditorDialog(java.awt.Frame parent, boolean modal)
+    public EditorDialog(java.awt.Frame parent, boolean modal, boolean create)
     {
         super(parent, modal);
         initComponents();
+        creating = create;
     }
 
     public void LoadListing(Listing list)
@@ -411,7 +412,7 @@ public class EditorDialog extends javax.swing.JDialog
         {
             public void run()
             {
-                EditorDialog dialog = new EditorDialog(new javax.swing.JFrame(), true);
+                EditorDialog dialog = new EditorDialog(new javax.swing.JFrame(), true, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter()
                 {
                     @Override

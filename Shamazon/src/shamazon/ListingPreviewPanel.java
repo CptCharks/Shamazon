@@ -149,7 +149,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
     public void EditListing(Listing list)
     {
        //Edit a given listing provided it is owned by the user and not sold
-       EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true);
+       EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true,false);
        editor.LoadListing(list);
        editor.setVisible(true);
        editor.creating = false;
