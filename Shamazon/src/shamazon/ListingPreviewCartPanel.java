@@ -44,6 +44,8 @@ public class ListingPreviewCartPanel extends javax.swing.JPanel
         RemoveButton = new javax.swing.JButton();
         ListingPriceLabel = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         ListingImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ShamazonResources/ClientImages/ImageMissing.png"))); // NOI18N
         ListingImageLabel.setMaximumSize(new java.awt.Dimension(150, 150));
         ListingImageLabel.setMinimumSize(new java.awt.Dimension(150, 150));
@@ -52,6 +54,7 @@ public class ListingPreviewCartPanel extends javax.swing.JPanel
         ListingNameLabel.setText("Name");
 
         ListingDescLabel.setText("Desc");
+        ListingDescLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         RemoveButton.setText("Remove");
         RemoveButton.addActionListener(new java.awt.event.ActionListener()
@@ -95,7 +98,7 @@ public class ListingPreviewCartPanel extends javax.swing.JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(RemoveButton)
                             .addComponent(ListingPriceLabel))
-                        .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 6, Short.MAX_VALUE))
                     .addComponent(ListingImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
