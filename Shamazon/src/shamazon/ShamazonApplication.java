@@ -31,6 +31,7 @@ public class ShamazonApplication extends javax.swing.JFrame
         TransactionManager tranMan = new TransactionManager(user);  
         
         ListingBrowser listBrow = new ListingBrowser(theCart, user);
+        listBrow.RefreshListings();
         tabPane.addTab("Browse",listBrow);
         listBrow.setVisible(true);
         
