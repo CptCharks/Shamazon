@@ -282,7 +282,9 @@ public class UserAccountEditor extends javax.swing.JPanel
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_cancelButtonMouseClicked
     {//GEN-HEADEREND:event_cancelButtonMouseClicked
+        this.userAccount = null;
         parentDialog.dispose();
+        
     }//GEN-LAST:event_cancelButtonMouseClicked
 
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_saveButtonMouseClicked
