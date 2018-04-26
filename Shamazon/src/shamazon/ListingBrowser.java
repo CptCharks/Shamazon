@@ -332,6 +332,7 @@ public class ListingBrowser extends javax.swing.JPanel {
     {
         shopCart = cart;
     }
+    
     /**
      * Refreshes listings in the scroll pane. Use to repopulate the list after
      * loading new listings.

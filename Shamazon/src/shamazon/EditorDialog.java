@@ -298,11 +298,12 @@ public class EditorDialog extends javax.swing.JDialog
                 PriceTextField.setBackground(Color.red);
             }
         }
+        this.dispose();
     }//GEN-LAST:event_SaveEditorButtonActionPerformed
 
     private void EditorCancelButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_EditorCancelButtonActionPerformed
     {//GEN-HEADEREND:event_EditorCancelButtonActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_EditorCancelButtonActionPerformed
 
     private void TagTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_TagTextFieldActionPerformed

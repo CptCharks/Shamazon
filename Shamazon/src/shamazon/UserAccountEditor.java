@@ -153,6 +153,13 @@ public class UserAccountEditor extends javax.swing.JPanel
                 cancelButtonMouseClicked(evt);
             }
         });
+        cancelButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Username");
 
@@ -164,6 +171,13 @@ public class UserAccountEditor extends javax.swing.JPanel
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 saveButtonMouseClicked(evt);
+            }
+        });
+        saveButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                saveButtonActionPerformed(evt);
             }
         });
 
@@ -283,6 +297,16 @@ public class UserAccountEditor extends javax.swing.JPanel
     {//GEN-HEADEREND:event_formAncestorRemoved
        this.userAccount = null;
     }//GEN-LAST:event_formAncestorRemoved
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cancelButtonActionPerformed
+    {//GEN-HEADEREND:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveButtonActionPerformed
+    {//GEN-HEADEREND:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     private void LoadAvatar(ImageIcon avatar)
     {
