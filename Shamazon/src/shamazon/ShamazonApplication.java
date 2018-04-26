@@ -31,7 +31,6 @@ public class ShamazonApplication extends javax.swing.JFrame
         TransactionManager tranMan = new TransactionManager(user);  
         
         ListingBrowser listBrow = new ListingBrowser(theCart, user);
-        listBrow.RefreshListings();
         tabPane.addTab("Browse",listBrow);
         listBrow.setVisible(true);
         
@@ -39,7 +38,7 @@ public class ShamazonApplication extends javax.swing.JFrame
         tabPane.addTab("Checkout",shopCartPan);
         shopCartPan.setVisible(false);
         
-        Mailbox mailbox = new Mailbox(user);
+        //Mailbox mailbox = new Mailbox(user);
         
         //MailboxForm mailboxPanel = new MailboxForm();
         //tabPane.addTab("Mail",mailboxPanel);
@@ -52,6 +51,7 @@ public class ShamazonApplication extends javax.swing.JFrame
         mainFrame.add(tabPane);
         mainFrame.setVisible(true);
         tabPane.setVisible(true);
+        listBrow.OnStart();
     }
 
     /**
