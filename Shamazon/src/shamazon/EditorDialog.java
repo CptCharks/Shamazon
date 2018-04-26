@@ -277,7 +277,11 @@ public class EditorDialog extends javax.swing.JDialog
                 if(creating)
                 {
                     DatabaseManager.AddObjectToDatabase(listingToEdit, "Listings");
-                    listingToEdit.GetOwner().AddPostedListing(listingToEdit);
+                    UserAccount userRef = listingToEdit.GetOwner();
+                    if(userRef != null)
+                    {
+                        userRef.AddPostedListing(listingToEdit);
+                    }
                 }
                 else
                 {
@@ -288,7 +292,6 @@ public class EditorDialog extends javax.swing.JDialog
             {
 
             }
-            this.getParent().setVisible(false);
         }
         else
         {
