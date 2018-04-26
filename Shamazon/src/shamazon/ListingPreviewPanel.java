@@ -218,6 +218,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
     {
         EditButton.setVisible(true);
         AddToCartButton.setVisible(false);
+        deleteButton.setVisible(true);
     }
     
     /**
@@ -227,6 +228,7 @@ public class ListingPreviewPanel extends javax.swing.JPanel {
      */
     public void LoadListingToPanel(Listing list, ListingBrowser listBrow)
     {
+        deleteButton.setVisible(false);
         EditButton.setVisible(false);
         listingPreview = list;
         listBrowser = listBrow;
