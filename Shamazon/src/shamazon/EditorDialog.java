@@ -276,6 +276,7 @@ public class EditorDialog extends javax.swing.JDialog
                 if(creating)
                 {
                     DatabaseManager.AddObjectToDatabase(listingToEdit, "Listings");
+                    listingToEdit.GetOwner().AddPostedListing(listingToEdit);
                 }
                 else
                 {
