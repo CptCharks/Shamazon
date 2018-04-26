@@ -255,13 +255,9 @@ public class ListingBrowser extends javax.swing.JPanel {
        {
             Listing newListing = new Listing();
             newListing.SetOwner(user);
-            ListingEditorPanel editor = new ListingEditorPanel();
+            EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true);
             editor.LoadListing(newListing);
-            JFrame editFrame = new JFrame();
-            editFrame.setSize(700,500);
-            editFrame.getContentPane().add(editor);
             editor.setVisible(true);
-            editFrame.setVisible(true);
             editor.creating = true;
        }
        else
@@ -276,13 +272,9 @@ public class ListingBrowser extends javax.swing.JPanel {
     public void EditListing(Listing list)
     {
        //Edit a given listing provided it is owned by the user and not sold
-       ListingEditorPanel editor = new ListingEditorPanel();
+       EditorDialog editor = new EditorDialog(new javax.swing.JFrame(), true);
        editor.LoadListing(list);
-       JFrame editFrame = new JFrame();
-       editFrame.setSize(700,500);
-       editFrame.getContentPane().add(editor);
        editor.setVisible(true);
-       editFrame.setVisible(true);
        editor.creating = false;
     }
     
