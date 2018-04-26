@@ -50,6 +50,7 @@ public class UserAccountViewer extends javax.swing.JPanel
         purchasedListingsButton = new javax.swing.JButton();
         postedListingsButton = new javax.swing.JButton();
         jButtonEditAccount = new javax.swing.JButton();
+        jButtonEditAccount1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(580, 175));
 
@@ -112,6 +113,15 @@ public class UserAccountViewer extends javax.swing.JPanel
             }
         });
 
+        jButtonEditAccount1.setText("Edit Account");
+        jButtonEditAccount1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonEditAccount1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,21 +131,28 @@ public class UserAccountViewer extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                        .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(postedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(purchasedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 64, Short.MAX_VALUE))
-                    .addComponent(creditCardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(creditCardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                            .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(postedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(purchasedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(jButtonEditAccount1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(410, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +175,12 @@ public class UserAccountViewer extends javax.swing.JPanel
                     .addComponent(postedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(purchasedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(190, Short.MAX_VALUE)
+                    .addComponent(jButtonEditAccount1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(16, 16, 16)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -194,6 +216,11 @@ public class UserAccountViewer extends javax.swing.JPanel
         // TODO add your handling code here:
     }//GEN-LAST:event_postedListingsButtonActionPerformed
 
+    private void jButtonEditAccount1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonEditAccount1ActionPerformed
+    {//GEN-HEADEREND:event_jButtonEditAccount1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditAccount1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
@@ -201,6 +228,7 @@ public class UserAccountViewer extends javax.swing.JPanel
     private javax.swing.JLabel creditCardLabel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JButton jButtonEditAccount;
+    private javax.swing.JButton jButtonEditAccount1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton postedListingsButton;
     private javax.swing.JButton purchasedListingsButton;
@@ -217,6 +245,8 @@ public class UserAccountViewer extends javax.swing.JPanel
         addressLabel.setText(account.GetAddress());
         emailLabel.setText(account.GetEmail());
         creditCardLabel.setText(account.GetCreditCardNumber());
-        avatarLabel.setIcon(new ImageIcon(account.GetAvatar().getImage().getScaledInstance(avatarLabel.getPreferredSize().width, avatarLabel.getPreferredSize().height, 0)));
+        
+        if(account.GetAvatar() != null)
+            avatarLabel.setIcon(new ImageIcon(account.GetAvatar().getImage().getScaledInstance(avatarLabel.getPreferredSize().width, avatarLabel.getPreferredSize().height, 0)));
     }
 }

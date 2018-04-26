@@ -39,9 +39,8 @@ public class DatabaseManager
      */
     private static Connection OpenConnection()
     {
-
         Connection databaseConnection = null;
-        
+
         for(int i = 0; i < 10; i++)
         {
             try
@@ -53,11 +52,12 @@ public class DatabaseManager
             {
                 databaseConnection = null;
             }
+
+            if(databaseConnection != null)
+                return databaseConnection;
         }
-        if (databaseConnection != null)
-            return databaseConnection;
-        else
-            return null;
+        
+        return databaseConnection;
     }
     
     /**

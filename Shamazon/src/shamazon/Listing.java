@@ -200,4 +200,13 @@ public class Listing extends ShamazonObject
     {
         this.listingOwner= user;
     }
+    
+    @Override
+    public boolean equals(Object object)
+    {
+        if(this == object) 
+            return true;
+        else
+            return false;
+    }
 }
