@@ -206,6 +206,9 @@ public class UserAccountViewer extends javax.swing.JPanel
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Loads the account information into the panel
+     */
     private void LoadAccount()
     {
         usernameLabel.setText(account.GetUsername());

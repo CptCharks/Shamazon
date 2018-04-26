@@ -16,7 +16,7 @@ public class ShamazonApplication extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form ShamazonApplication
+     * Creates new form ShamazonApplication with all the bells and whistles
      */
     public ShamazonApplication(UserAccount user)
     {
@@ -66,6 +66,13 @@ public class ShamazonApplication extends javax.swing.JFrame
         ShamazonTab = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,6 +93,11 @@ public class ShamazonApplication extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
