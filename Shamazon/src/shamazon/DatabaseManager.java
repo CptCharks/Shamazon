@@ -205,7 +205,7 @@ public class DatabaseManager
         {
             byte[] byteArray = null;
 
-            byteArray = DatabaseObjectConverter.GetByteArray((UserAccount)object);
+            byteArray = DatabaseObjectConverter.GetByteArray(object);
 
             String query = "select * from " + tableName;
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
