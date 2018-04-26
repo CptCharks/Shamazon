@@ -38,7 +38,8 @@ public class UserAccountViewer extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         avatarLabel = new javax.swing.JLabel();
         usernameLabel = new javax.swing.JLabel();
@@ -78,22 +79,35 @@ public class UserAccountViewer extends javax.swing.JPanel
         creditCardLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Credit Card Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 16))); // NOI18N
 
         purchasedListingsButton.setText("Purchased Listings");
-        purchasedListingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        purchasedListingsButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 purchasedListingsButtonMouseClicked(evt);
             }
         });
 
         postedListingsButton.setText("Posted Listings");
-        postedListingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        postedListingsButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 postedListingsButtonMouseClicked(evt);
+            }
+        });
+        postedListingsButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                postedListingsButtonActionPerformed(evt);
             }
         });
 
         jButtonEditAccount.setText("Edit Account");
-        jButtonEditAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonEditAccount.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonEditAccountActionPerformed(evt);
             }
         });
@@ -144,7 +158,7 @@ public class UserAccountViewer extends javax.swing.JPanel
                     .addComponent(postedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(purchasedListingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -155,7 +169,8 @@ public class UserAccountViewer extends javax.swing.JPanel
 
     private void postedListingsButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_postedListingsButtonMouseClicked
     {//GEN-HEADEREND:event_postedListingsButtonMouseClicked
-        // TODO add your handling code here:
+        UserListingDialog usListDiag = new UserListingDialog(new javax.swing.JFrame(),true,this.account);
+        usListDiag.setVisible(true);
     }//GEN-LAST:event_postedListingsButtonMouseClicked
 
     private void jButtonEditAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditAccountActionPerformed
@@ -172,6 +187,11 @@ public class UserAccountViewer extends javax.swing.JPanel
             }
         }
     }//GEN-LAST:event_jButtonEditAccountActionPerformed
+
+    private void postedListingsButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_postedListingsButtonActionPerformed
+    {//GEN-HEADEREND:event_postedListingsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_postedListingsButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
