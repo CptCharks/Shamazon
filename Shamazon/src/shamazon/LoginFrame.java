@@ -46,9 +46,6 @@ public class LoginFrame extends javax.swing.JFrame
         jButtonCancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
         jButtonRegister = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
@@ -99,15 +96,6 @@ public class LoginFrame extends javax.swing.JFrame
 
         jLabel2.setText("Password");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Yes");
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Yes");
-
-        jLabel3.setText("Is your mum gay?");
-
         jButtonRegister.setText("Register");
         jButtonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -131,10 +119,7 @@ public class LoginFrame extends javax.swing.JFrame
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldUser)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel2)
-                        .addComponent(jRadioButton2)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonCancel)
                 .addGap(28, 28, 28))
@@ -150,13 +135,7 @@ public class LoginFrame extends javax.swing.JFrame
                 .addComponent(jLabel2)
                 .addGap(8, 8, 8)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
-                .addGap(18, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLogin)
                     .addComponent(jButtonCancel)
@@ -271,10 +250,7 @@ public class LoginFrame extends javax.swing.JFrame
     private javax.swing.JInternalFrame jInternalFrame3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldUser;
     // End of variables declaration//GEN-END:variables
