@@ -7,6 +7,9 @@
         <EtchetBorder/>
       </Border>
     </Property>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[5050, 190]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -54,7 +57,7 @@
                           <Component id="RemoveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ListingPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="ListingImageLabel" max="32767" attributes="0"/>
               </Group>
