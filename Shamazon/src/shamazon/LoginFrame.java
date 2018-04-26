@@ -158,7 +158,10 @@ public class LoginFrame extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * attempts to login a user
+ * @param evt 
+ */
     private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
         String pass = String.valueOf(jPasswordField1.getPassword());
         try {
@@ -187,6 +190,10 @@ public class LoginFrame extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
+/**
+ * Opens the registration dialog to allow a new user to create an account
+ * @param evt 
+ */    
     private void jButtonRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegisterMouseClicked
         UserAccount newUser = new UserAccount();
         newUser = UserAccountManager.CreateUserAccount(this);
@@ -198,10 +205,12 @@ public class LoginFrame extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRegisterMouseClicked
 
+    /**
+     * closes the dialog
+     * @param evt 
+     */
     private void jButtonCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCancelMouseClicked
        this.dispose();
-       
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelMouseClicked
 
     /**
