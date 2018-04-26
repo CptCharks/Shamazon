@@ -66,14 +66,19 @@ public class UserAccountViewer extends javax.swing.JPanel
         avatarLabel.setPreferredSize(new java.awt.Dimension(150, 150));
 
         usernameLabel.setText("jLabel1");
+        usernameLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         nameLabel.setText("jLabel1");
+        nameLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         addressLabel.setText("jLabel1");
+        addressLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         emailLabel.setText("jLabel1");
+        emailLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         creditCardLabel.setText("jLabel1");
+        creditCardLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
